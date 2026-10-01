@@ -1,5 +1,11 @@
 # Baseline Report
 
+## Pi baseline without additional skills (2026-10-01)
+
+[Full PDF report](pdf/pi_baseline_no_skills_report.pdf) / [LaTeX source](pdf/pi_baseline_no_skills_report.tex) / [Statistics](results/pi_baseline_20260927/statistics.json).
+
+All 1,200 development and 2,400 evaluation episodes are valid, with 1,800 matched initial-state pairs. Evaluation final success is 37.00% for direct VLA and 37.83% for Pi: a paired difference of +0.83 percentage points (task-cluster 95% interval: -1.42 to +3.08). The report includes group results, false completion claims, paired gains and losses, actions, latency, estimated API costs, and audit hashes. This baseline is separate from the mature-agent comparisons below.
+
 ## 最新机器人操作 Agent 测试汇总
 
 2026-09-16：[长程时序能力测试 PDF](pdf/robotics_agent_long_horizon_report.pdf) / [LaTeX 源文件](pdf/robotics_agent_long_horizon_report.tex)。汇总 Fixed Pi0.5、EmbodiedSkills、Thea port、RPent、Zetta 候选和 CaP-Agent0 单模型适配，共 47 条有效测试轨迹，另列 Zetta 开发数据边界。

@@ -1,0 +1,797 @@
+{
+  "development": {
+    "scopes": {
+      "all": {
+        "pairs": 600,
+        "clusters": 40,
+        "delta_pp": -1.0,
+        "ci95": [
+          -5.166666666666666,
+          2.5
+        ],
+        "rescue": 33,
+        "harm": 39,
+        "fixed": {
+          "n": 600,
+          "final": 225,
+          "ever": 256,
+          "false_claims": 0,
+          "claims": 0,
+          "steps": 330,
+          "seconds": 13.814300745725632,
+          "median_seconds": 12.233289003372192,
+          "usd": 0,
+          "calls": 0
+        },
+        "pi": {
+          "n": 600,
+          "final": 219,
+          "ever": 243,
+          "false_claims": 90,
+          "claims": 304,
+          "steps": 281.76,
+          "seconds": 141.96234280784924,
+          "median_seconds": 118.44096207618713,
+          "usd": 132.49272779999998,
+          "calls": 17559
+        }
+      },
+      "standard": {
+        "pairs": 200,
+        "clusters": 40,
+        "delta_pp": -4.0,
+        "ci95": [
+          -11.500000000000002,
+          2.5000000000000004
+        ],
+        "rescue": 14,
+        "harm": 22,
+        "fixed": {
+          "n": 200,
+          "final": 173,
+          "ever": 191,
+          "false_claims": 0,
+          "claims": 0,
+          "steps": 330,
+          "seconds": 13.947088540792466,
+          "median_seconds": 12.189949989318848,
+          "usd": 0,
+          "calls": 0
+        },
+        "pi": {
+          "n": 200,
+          "final": 165,
+          "ever": 178,
+          "false_claims": 13,
+          "claims": 174,
+          "steps": 231.44,
+          "seconds": 106.67201668739318,
+          "median_seconds": 80.78627860546112,
+          "usd": 30.155458199999998,
+          "calls": 4761
+        }
+      },
+      "pro": {
+        "pairs": 400,
+        "clusters": 40,
+        "delta_pp": 0.49999999999999994,
+        "ci95": [
+          -2.7500000000000004,
+          3.9999999999999996
+        ],
+        "rescue": 19,
+        "harm": 17,
+        "fixed": {
+          "n": 400,
+          "final": 52,
+          "ever": 65,
+          "false_claims": 0,
+          "claims": 0,
+          "steps": 330,
+          "seconds": 13.747906848192216,
+          "median_seconds": 12.256694316864014,
+          "usd": 0,
+          "calls": 0
+        },
+        "pi": {
+          "n": 400,
+          "final": 54,
+          "ever": 65,
+          "false_claims": 77,
+          "claims": 130,
+          "steps": 306.92,
+          "seconds": 159.60750586807728,
+          "median_seconds": 142.26271498203278,
+          "usd": 102.3372696,
+          "calls": 12798
+        }
+      }
+    },
+    "groups": [
+      {
+        "suite": "libero_10",
+        "mode": "fixed",
+        "n": 50,
+        "ever": 47,
+        "final": 40,
+        "false_claims": 0,
+        "mean_steps": 520,
+        "mean_seconds": 20.010572595596315,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_10",
+        "mode": "pi",
+        "n": 50,
+        "ever": 44,
+        "final": 36,
+        "false_claims": 3,
+        "mean_steps": 383.04,
+        "mean_seconds": 172.20579018115998,
+        "api_usd_upper": 13.7660424
+      },
+      {
+        "suite": "libero_10_swap",
+        "mode": "fixed",
+        "n": 50,
+        "ever": 1,
+        "final": 0,
+        "false_claims": 0,
+        "mean_steps": 520,
+        "mean_seconds": 18.96984001636505,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_10_swap",
+        "mode": "pi",
+        "n": 50,
+        "ever": 1,
+        "final": 0,
+        "false_claims": 4,
+        "mean_steps": 507.52,
+        "mean_seconds": 177.31721440792083,
+        "api_usd_upper": 13.2662718
+      },
+      {
+        "suite": "libero_10_task",
+        "mode": "fixed",
+        "n": 50,
+        "ever": 10,
+        "final": 7,
+        "false_claims": 0,
+        "mean_steps": 520,
+        "mean_seconds": 18.98752645969391,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_10_task",
+        "mode": "pi",
+        "n": 50,
+        "ever": 12,
+        "final": 12,
+        "false_claims": 11,
+        "mean_steps": 461.12,
+        "mean_seconds": 178.3394545507431,
+        "api_usd_upper": 14.3990295
+      },
+      {
+        "suite": "libero_goal",
+        "mode": "fixed",
+        "n": 50,
+        "ever": 49,
+        "final": 42,
+        "false_claims": 0,
+        "mean_steps": 300,
+        "mean_seconds": 11.609334692955017,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_goal",
+        "mode": "pi",
+        "n": 50,
+        "ever": 39,
+        "final": 35,
+        "false_claims": 6,
+        "mean_steps": 203.52,
+        "mean_seconds": 86.28927505016327,
+        "api_usd_upper": 6.0238722
+      },
+      {
+        "suite": "libero_goal_swap",
+        "mode": "fixed",
+        "n": 50,
+        "ever": 11,
+        "final": 11,
+        "false_claims": 0,
+        "mean_steps": 300,
+        "mean_seconds": 11.537966656684876,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_goal_swap",
+        "mode": "pi",
+        "n": 50,
+        "ever": 6,
+        "final": 6,
+        "false_claims": 4,
+        "mean_steps": 274,
+        "mean_seconds": 122.43897313117981,
+        "api_usd_upper": 9.9526068
+      },
+      {
+        "suite": "libero_goal_task",
+        "mode": "fixed",
+        "n": 50,
+        "ever": 7,
+        "final": 1,
+        "false_claims": 0,
+        "mean_steps": 300,
+        "mean_seconds": 11.807292437553405,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_goal_task",
+        "mode": "pi",
+        "n": 50,
+        "ever": 9,
+        "final": 1,
+        "false_claims": 13,
+        "mean_steps": 288.08,
+        "mean_seconds": 146.91303770542146,
+        "api_usd_upper": 11.868928499999999
+      },
+      {
+        "suite": "libero_object",
+        "mode": "fixed",
+        "n": 50,
+        "ever": 49,
+        "final": 49,
+        "false_claims": 0,
+        "mean_steps": 280,
+        "mean_seconds": 12.117252440452576,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_object",
+        "mode": "pi",
+        "n": 50,
+        "ever": 50,
+        "final": 49,
+        "false_claims": 1,
+        "mean_steps": 186.56,
+        "mean_seconds": 86.03111357212066,
+        "api_usd_upper": 5.9240208
+      },
+      {
+        "suite": "libero_object_swap",
+        "mode": "fixed",
+        "n": 50,
+        "ever": 3,
+        "final": 3,
+        "false_claims": 0,
+        "mean_steps": 280,
+        "mean_seconds": 12.152243919372559,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_object_swap",
+        "mode": "pi",
+        "n": 50,
+        "ever": 7,
+        "final": 7,
+        "false_claims": 10,
+        "mean_steps": 271.36,
+        "mean_seconds": 190.0152501153946,
+        "api_usd_upper": 15.2284425
+      },
+      {
+        "suite": "libero_object_task",
+        "mode": "fixed",
+        "n": 50,
+        "ever": 5,
+        "final": 5,
+        "false_claims": 0,
+        "mean_steps": 280,
+        "mean_seconds": 12.206435995101929,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_object_task",
+        "mode": "pi",
+        "n": 50,
+        "ever": 5,
+        "final": 5,
+        "false_claims": 7,
+        "mean_steps": 264.96,
+        "mean_seconds": 185.88384799957277,
+        "api_usd_upper": 16.7824749
+      },
+      {
+        "suite": "libero_spatial",
+        "mode": "fixed",
+        "n": 50,
+        "ever": 46,
+        "final": 42,
+        "false_claims": 0,
+        "mean_steps": 220,
+        "mean_seconds": 12.051194434165955,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_spatial",
+        "mode": "pi",
+        "n": 50,
+        "ever": 45,
+        "final": 45,
+        "false_claims": 3,
+        "mean_steps": 152.64,
+        "mean_seconds": 82.16188794612884,
+        "api_usd_upper": 4.4415227999999995
+      },
+      {
+        "suite": "libero_spatial_swap",
+        "mode": "fixed",
+        "n": 50,
+        "ever": 12,
+        "final": 10,
+        "false_claims": 0,
+        "mean_steps": 220,
+        "mean_seconds": 12.276224656105041,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_spatial_swap",
+        "mode": "pi",
+        "n": 50,
+        "ever": 10,
+        "final": 8,
+        "false_claims": 16,
+        "mean_steps": 197.2,
+        "mean_seconds": 129.36220715999605,
+        "api_usd_upper": 9.8031819
+      },
+      {
+        "suite": "libero_spatial_task",
+        "mode": "fixed",
+        "n": 50,
+        "ever": 16,
+        "final": 15,
+        "false_claims": 0,
+        "mean_steps": 220,
+        "mean_seconds": 12.04572464466095,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_spatial_task",
+        "mode": "pi",
+        "n": 50,
+        "ever": 15,
+        "final": 15,
+        "false_claims": 12,
+        "mean_steps": 191.12,
+        "mean_seconds": 146.59006187438965,
+        "api_usd_upper": 11.0363337
+      }
+    ],
+    "image_positive": 600,
+    "returned_models": [
+      "deepseek-flash"
+    ]
+  },
+  "evaluation": {
+    "scopes": {
+      "all": {
+        "pairs": 1200,
+        "clusters": 40,
+        "delta_pp": 0.8333333333333335,
+        "ci95": [
+          -1.4166666666666665,
+          3.0833333333333335
+        ],
+        "rescue": 62,
+        "harm": 52,
+        "fixed": {
+          "n": 1200,
+          "final": 444,
+          "ever": 514,
+          "false_claims": 0,
+          "claims": 0,
+          "steps": 330,
+          "seconds": 13.501970565517743,
+          "median_seconds": 12.037531971931458,
+          "usd": 0,
+          "calls": 0
+        },
+        "pi": {
+          "n": 1200,
+          "final": 454,
+          "ever": 501,
+          "false_claims": 159,
+          "claims": 603,
+          "steps": 282.01,
+          "seconds": 159.6371445810795,
+          "median_seconds": 133.48086416721344,
+          "usd": 260.2797771,
+          "calls": 34707
+        }
+      },
+      "standard": {
+        "pairs": 400,
+        "clusters": 40,
+        "delta_pp": -0.2500000000000002,
+        "ci95": [
+          -4.5,
+          4.000000000000001
+        ],
+        "rescue": 29,
+        "harm": 30,
+        "fixed": {
+          "n": 400,
+          "final": 339,
+          "ever": 382,
+          "false_claims": 0,
+          "claims": 0,
+          "steps": 330,
+          "seconds": 13.371075302362442,
+          "median_seconds": 11.671576499938965,
+          "usd": 0,
+          "calls": 0
+        },
+        "pi": {
+          "n": 400,
+          "final": 338,
+          "ever": 368,
+          "false_claims": 34,
+          "claims": 363,
+          "steps": 229.94,
+          "seconds": 127.37518255233765,
+          "median_seconds": 96.43855822086334,
+          "usd": 64.8144516,
+          "calls": 9983
+        }
+      },
+      "pro": {
+        "pairs": 800,
+        "clusters": 40,
+        "delta_pp": 1.3750000000000002,
+        "ci95": [
+          -0.7500000000000001,
+          3.4999999999999996
+        ],
+        "rescue": 33,
+        "harm": 22,
+        "fixed": {
+          "n": 800,
+          "final": 105,
+          "ever": 132,
+          "false_claims": 0,
+          "claims": 0,
+          "steps": 330,
+          "seconds": 13.567418197095394,
+          "median_seconds": 12.243419647216797,
+          "usd": 0,
+          "calls": 0
+        },
+        "pi": {
+          "n": 800,
+          "final": 116,
+          "ever": 133,
+          "false_claims": 125,
+          "claims": 240,
+          "steps": 308.045,
+          "seconds": 175.7681255954504,
+          "median_seconds": 153.0967960357666,
+          "usd": 195.4653255,
+          "calls": 24724
+        }
+      }
+    },
+    "groups": [
+      {
+        "suite": "libero_10",
+        "mode": "fixed",
+        "n": 100,
+        "ever": 96,
+        "final": 78,
+        "false_claims": 0,
+        "mean_steps": 520,
+        "mean_seconds": 18.85238492488861,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_10",
+        "mode": "pi",
+        "n": 100,
+        "ever": 90,
+        "final": 69,
+        "false_claims": 19,
+        "mean_steps": 390.64,
+        "mean_seconds": 195.32745510339737,
+        "api_usd_upper": 27.7246284
+      },
+      {
+        "suite": "libero_10_swap",
+        "mode": "fixed",
+        "n": 100,
+        "ever": 0,
+        "final": 0,
+        "false_claims": 0,
+        "mean_steps": 520,
+        "mean_seconds": 18.52782976388931,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_10_swap",
+        "mode": "pi",
+        "n": 100,
+        "ever": 4,
+        "final": 1,
+        "false_claims": 5,
+        "mean_steps": 508.8,
+        "mean_seconds": 201.93206743955614,
+        "api_usd_upper": 28.0533774
+      },
+      {
+        "suite": "libero_10_task",
+        "mode": "fixed",
+        "n": 100,
+        "ever": 18,
+        "final": 14,
+        "false_claims": 0,
+        "mean_steps": 520,
+        "mean_seconds": 18.58852729320526,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_10_task",
+        "mode": "pi",
+        "n": 100,
+        "ever": 15,
+        "final": 12,
+        "false_claims": 29,
+        "mean_steps": 469.52,
+        "mean_seconds": 219.54823406219484,
+        "api_usd_upper": 34.4309241
+      },
+      {
+        "suite": "libero_goal",
+        "mode": "fixed",
+        "n": 100,
+        "ever": 94,
+        "final": 83,
+        "false_claims": 0,
+        "mean_steps": 300,
+        "mean_seconds": 11.372240161895752,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_goal",
+        "mode": "pi",
+        "n": 100,
+        "ever": 89,
+        "final": 84,
+        "false_claims": 5,
+        "mean_steps": 190.6,
+        "mean_seconds": 106.29431476354598,
+        "api_usd_upper": 12.4887021
+      },
+      {
+        "suite": "libero_goal_swap",
+        "mode": "fixed",
+        "n": 100,
+        "ever": 19,
+        "final": 17,
+        "false_claims": 0,
+        "mean_steps": 300,
+        "mean_seconds": 11.466583166122437,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_goal_swap",
+        "mode": "pi",
+        "n": 100,
+        "ever": 19,
+        "final": 19,
+        "false_claims": 14,
+        "mean_steps": 265.12,
+        "mean_seconds": 127.37795783996582,
+        "api_usd_upper": 15.0347799
+      },
+      {
+        "suite": "libero_goal_task",
+        "mode": "fixed",
+        "n": 100,
+        "ever": 17,
+        "final": 5,
+        "false_claims": 0,
+        "mean_steps": 300,
+        "mean_seconds": 11.663436698913575,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_goal_task",
+        "mode": "pi",
+        "n": 100,
+        "ever": 13,
+        "final": 2,
+        "false_claims": 21,
+        "mean_steps": 289.2,
+        "mean_seconds": 155.6409402680397,
+        "api_usd_upper": 21.1484763
+      },
+      {
+        "suite": "libero_object",
+        "mode": "fixed",
+        "n": 100,
+        "ever": 98,
+        "final": 98,
+        "false_claims": 0,
+        "mean_steps": 280,
+        "mean_seconds": 11.645990869998933,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_object",
+        "mode": "pi",
+        "n": 100,
+        "ever": 97,
+        "final": 97,
+        "false_claims": 0,
+        "mean_steps": 187.68,
+        "mean_seconds": 110.55920494556428,
+        "api_usd_upper": 14.914315799999999
+      },
+      {
+        "suite": "libero_object_swap",
+        "mode": "fixed",
+        "n": 100,
+        "ever": 5,
+        "final": 5,
+        "false_claims": 0,
+        "mean_steps": 280,
+        "mean_seconds": 12.315548379421234,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_object_swap",
+        "mode": "pi",
+        "n": 100,
+        "ever": 9,
+        "final": 9,
+        "false_claims": 11,
+        "mean_steps": 273.04,
+        "mean_seconds": 194.792849612236,
+        "api_usd_upper": 25.7151831
+      },
+      {
+        "suite": "libero_object_task",
+        "mode": "fixed",
+        "n": 100,
+        "ever": 10,
+        "final": 10,
+        "false_claims": 0,
+        "mean_steps": 280,
+        "mean_seconds": 12.165145406723022,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_object_task",
+        "mode": "pi",
+        "n": 100,
+        "ever": 10,
+        "final": 10,
+        "false_claims": 10,
+        "mean_steps": 268.24,
+        "mean_seconds": 205.54002861976625,
+        "api_usd_upper": 31.480942799999998
+      },
+      {
+        "suite": "libero_spatial",
+        "mode": "fixed",
+        "n": 100,
+        "ever": 94,
+        "final": 80,
+        "false_claims": 0,
+        "mean_steps": 220,
+        "mean_seconds": 11.613685252666473,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_spatial",
+        "mode": "pi",
+        "n": 100,
+        "ever": 92,
+        "final": 88,
+        "false_claims": 10,
+        "mean_steps": 150.84,
+        "mean_seconds": 97.31975539684295,
+        "api_usd_upper": 9.6868053
+      },
+      {
+        "suite": "libero_spatial_swap",
+        "mode": "fixed",
+        "n": 100,
+        "ever": 27,
+        "final": 19,
+        "false_claims": 0,
+        "mean_steps": 220,
+        "mean_seconds": 12.040771384239196,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_spatial_swap",
+        "mode": "pi",
+        "n": 100,
+        "ever": 26,
+        "final": 26,
+        "false_claims": 25,
+        "mean_steps": 195.64,
+        "mean_seconds": 141.9297914624214,
+        "api_usd_upper": 18.9109266
+      },
+      {
+        "suite": "libero_spatial_task",
+        "mode": "fixed",
+        "n": 100,
+        "ever": 36,
+        "final": 35,
+        "false_claims": 0,
+        "mean_steps": 220,
+        "mean_seconds": 11.771503484249115,
+        "api_usd_upper": 0
+      },
+      {
+        "suite": "libero_spatial_task",
+        "mode": "pi",
+        "n": 100,
+        "ever": 37,
+        "final": 37,
+        "false_claims": 10,
+        "mean_steps": 194.8,
+        "mean_seconds": 159.38313545942307,
+        "api_usd_upper": 20.6907153
+      }
+    ],
+    "image_positive": 1200,
+    "returned_models": [
+      "deepseek-flash"
+    ]
+  },
+  "cost": {
+    "canary": {
+      "calls": 450,
+      "usd": 3.3880559999999997,
+      "ok": 450
+    },
+    "development": {
+      "calls": 17559,
+      "usd": 132.49272780000027,
+      "ok": 17523,
+      "uncertain_or_error": 36
+    },
+    "invalid_or_other": {
+      "calls": 96,
+      "usd": 7.799291099999999,
+      "ok": 77,
+      "uncertain_or_error": 19
+    },
+    "health": {
+      "calls": 2,
+      "usd": 7.500000000000001e-05,
+      "ok": 2
+    },
+    "evaluation": {
+      "calls": 34707,
+      "usd": 260.2797771000006,
+      "ok": 34642,
+      "uncertain_or_error": 65
+    }
+  },
+  "ledger_total": 403.959927,
+  "hashes": {
+    "development-audit.json": "c4317da7c90b813d2f559148dcd71053a6780cba601e7d558ca8f2b1fc1bfcfb",
+    "evaluation-audit.json": "c0027443359bc06f13fc4a3e8b4a36f100f6ee8cbfe1ee50f23d60bb3befccef",
+    "protocol-lock.json": "4640b3f0e881e03d2614c2e154b2a955062139253195f3727e40512773464f5b",
+    "ledger.json": "eee34028d9fd9db44931fc27003d5f525b10b7f45ab2415372a13b715ed43a69"
+  }
+}
