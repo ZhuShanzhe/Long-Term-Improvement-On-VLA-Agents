@@ -2,7 +2,7 @@
 
 这里是独立的新研究包，不是当前测试 runtime。原始开题PDF保持不变。
 
-阅读顺序：`REPORT.md`（完整完善版）→ `design/benchmark_protocol.md`（任务、指标、分割）→ `design/methods_and_related_work.md`（三条技术路线与文献差异）→ `foundation/README.md`（可运行的公共基础设施与研发扩展口）。`artifacts/`提供定稿PDF；`design/task_panel.proposed.json`包含预注册候选任务。
+阅读顺序：`REPORT.md`（完整完善版）→ `design/benchmark_protocol.md`（任务、指标、分割）→ `design/methods_and_related_work.md`（三条技术路线与文献差异）→ `foundation/README.md`（公共底座）→ `analysis/annotation_guide.md`（标注与评测）。`artifacts/`提供定稿PDF；`design/task_panel.proposed.json`包含预注册候选任务。
 
 建议先做短证据 skill 和行动前获取条件预测，使用公开证据及原执行器；不新增运动控制器、不读取oracle、不把接口PASS当native任务分数。RoboMME和RoboMemArena主测机制，LADDER作长程连续性/低风险对照，PRO及RoboCasa做迁移。新增 EVID-Preserve 是独立拟议协议，尚未建成物理benchmark。
 
@@ -15,7 +15,8 @@
 ## 再现
 
 ```text
-python -B -m unittest discover -s foundation -p test_foundation.py
+python -B -m unittest discover -s foundation -p 'test_*.py'
+python -B -m unittest discover -s analysis -p test_metrics.py
 python -B foundation/build_profiles.py
 ```
 

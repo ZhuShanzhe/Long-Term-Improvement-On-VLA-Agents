@@ -1,0 +1,228 @@
+{
+  "schema": "evidence-metrics-v1",
+  "benchmark": "SYNTHETIC_ONLY",
+  "ci_tool": "../foundation/paired_ci.py",
+  "event_rows_are_not_independent_samples": true,
+  "arms": {
+    "contract": {
+      "episodes": 1,
+      "valid_native_count": 1,
+      "native_true_count": 1,
+      "native_false_count": 0,
+      "native_unknown_count": 0,
+      "native_success_rate": 1.0,
+      "native_coverage": 1.0,
+      "native_missing_sensitivity_interval": [
+        1.0,
+        1.0
+      ],
+      "event_count": 3,
+      "independent_label_source_count": 3,
+      "independent_annotation_coverage": 1.0,
+      "mechanism": {
+        "ESC": {
+          "value": 1.0,
+          "numerator": 1,
+          "labeled_denominator": 1,
+          "eligible_count": 1,
+          "annotation_coverage": 1.0
+        },
+        "LMER": {
+          "value": null,
+          "numerator": 0,
+          "labeled_denominator": 0,
+          "eligible_count": 1,
+          "annotation_coverage": 0.0
+        },
+        "stale_binding_use": {
+          "value": null,
+          "numerator": 0,
+          "labeled_denominator": 0,
+          "eligible_count": 0,
+          "annotation_coverage": null
+        },
+        "overpreservation": {
+          "value": 1.0,
+          "numerator": 1,
+          "labeled_denominator": 1,
+          "eligible_count": 1,
+          "annotation_coverage": 1.0
+        }
+      },
+      "LMER_reason_counts": {
+        "none": 0,
+        "not_observed": 0,
+        "not_retained": 0,
+        "stale_binding": 0,
+        "unknown": 1
+      },
+      "availability": {
+        "current_view": {
+          "brier": null,
+          "ece": null,
+          "labeled_pairs": 0,
+          "bins": [],
+          "prediction_count": 0,
+          "annotation_coverage": null,
+          "cost_mae": null,
+          "cost_labeled_pairs": 0,
+          "cost_prediction_count": 0,
+          "cost_annotation_coverage": null
+        },
+        "historical_retrieval": {
+          "brier": 0.03999999999999998,
+          "ece": 0.19999999999999996,
+          "labeled_pairs": 1,
+          "bins": [
+            {
+              "index": 8,
+              "count": 1,
+              "mean_probability": 0.8,
+              "frequency": 1.0
+            }
+          ],
+          "prediction_count": 1,
+          "annotation_coverage": 1.0,
+          "cost_mae": 0.0,
+          "cost_labeled_pairs": 1,
+          "cost_prediction_count": 1,
+          "cost_annotation_coverage": 1.0
+        },
+        "reobserve": {
+          "brier": null,
+          "ece": null,
+          "labeled_pairs": 0,
+          "bins": [],
+          "prediction_count": 0,
+          "annotation_coverage": null,
+          "cost_mae": null,
+          "cost_labeled_pairs": 0,
+          "cost_prediction_count": 0,
+          "cost_annotation_coverage": null
+        },
+        "physical_recovery": {
+          "brier": null,
+          "ece": null,
+          "labeled_pairs": 0,
+          "bins": [],
+          "prediction_count": 1,
+          "annotation_coverage": 0.0,
+          "cost_mae": null,
+          "cost_labeled_pairs": 0,
+          "cost_prediction_count": 1,
+          "cost_annotation_coverage": 0.0
+        }
+      }
+    },
+    "text": {
+      "episodes": 1,
+      "valid_native_count": 0,
+      "native_true_count": 0,
+      "native_false_count": 0,
+      "native_unknown_count": 1,
+      "native_success_rate": null,
+      "native_coverage": 0.0,
+      "native_missing_sensitivity_interval": [
+        0.0,
+        1.0
+      ],
+      "event_count": 2,
+      "independent_label_source_count": 2,
+      "independent_annotation_coverage": 1.0,
+      "mechanism": {
+        "ESC": {
+          "value": 0.0,
+          "numerator": 0,
+          "labeled_denominator": 1,
+          "eligible_count": 1,
+          "annotation_coverage": 1.0
+        },
+        "LMER": {
+          "value": 1.0,
+          "numerator": 1,
+          "labeled_denominator": 1,
+          "eligible_count": 1,
+          "annotation_coverage": 1.0
+        },
+        "stale_binding_use": {
+          "value": 0.0,
+          "numerator": 0,
+          "labeled_denominator": 2,
+          "eligible_count": 2,
+          "annotation_coverage": 1.0
+        },
+        "overpreservation": {
+          "value": null,
+          "numerator": 0,
+          "labeled_denominator": 0,
+          "eligible_count": 0,
+          "annotation_coverage": null
+        }
+      },
+      "LMER_reason_counts": {
+        "none": 0,
+        "not_observed": 0,
+        "not_retained": 1,
+        "stale_binding": 0,
+        "unknown": 0
+      },
+      "availability": {
+        "current_view": {
+          "brier": null,
+          "ece": null,
+          "labeled_pairs": 0,
+          "bins": [],
+          "prediction_count": 0,
+          "annotation_coverage": null,
+          "cost_mae": null,
+          "cost_labeled_pairs": 0,
+          "cost_prediction_count": 0,
+          "cost_annotation_coverage": null
+        },
+        "historical_retrieval": {
+          "brier": 0.6400000000000001,
+          "ece": 0.8,
+          "labeled_pairs": 1,
+          "bins": [
+            {
+              "index": 8,
+              "count": 1,
+              "mean_probability": 0.8,
+              "frequency": 0.0
+            }
+          ],
+          "prediction_count": 1,
+          "annotation_coverage": 1.0,
+          "cost_mae": 2.0,
+          "cost_labeled_pairs": 1,
+          "cost_prediction_count": 1,
+          "cost_annotation_coverage": 1.0
+        },
+        "reobserve": {
+          "brier": null,
+          "ece": null,
+          "labeled_pairs": 0,
+          "bins": [],
+          "prediction_count": 0,
+          "annotation_coverage": null,
+          "cost_mae": null,
+          "cost_labeled_pairs": 0,
+          "cost_prediction_count": 0,
+          "cost_annotation_coverage": null
+        },
+        "physical_recovery": {
+          "brier": null,
+          "ece": null,
+          "labeled_pairs": 0,
+          "bins": [],
+          "prediction_count": 0,
+          "annotation_coverage": null,
+          "cost_mae": null,
+          "cost_labeled_pairs": 0,
+          "cost_prediction_count": 0,
+          "cost_annotation_coverage": null
+        }
+      }
+    }
+  }
+}

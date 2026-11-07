@@ -52,7 +52,7 @@
 
 LIBERO-PRO精确现有适配身份：suite `libero_object_swap` / `libero_goal_swap`，各task-index `1,3,8`；开发 reset seeds `0,1`，复核 `2–9`。这是现有launcher的0-based task-index，不是新命名的语义任务；评测锁定时同时导出对应原 task_name、BDDL SHA 和 init-state ID，防止不同版本索引漂移。未完成此解析的身份保持 `catalog_binding_pending`，禁止将其计入正式任务列表。真实PRO扰动入口、原初态与原native评分保留，不用标准LIBERO冒充PRO。[B6]
 
-RoboCasa固定原有注册ID：`ArrangeBreadBasket`、`CoffeeSetupMug`、`StackBowlsCabinet`。开发 seeds `0,1`；迁移 seeds `2–9`，并记录精确layout/style/init-state metadata。现有Coffee seed2已用于接口检查，必须标记seen而不是留出；最终留出须选从未用于方案调整的其余身份。不同RoboCasa版本task数量/步数已变化，沿当前已验证版本，不能直接切RoboCasa365最新版。三项应单列“保全策略开销/无害性”，不保证都有信息风险；若没有真证据损失机会则主机制指标标N/A。[B7]
+RoboCasa固定原有注册ID：`ArrangeBreadBasket`、`CoffeeSetupMug`、`StackBowlsCabinet`。按服务器当前target50原catalog核对，开发 seeds `1,2`（不使用不在catalog的seed0）；CoffeeSetupMug迁移候选 seeds `3–10`，两项composite迁移候选 seeds `3–5`，并记录精确layout/style/init-state metadata。现有Coffee seed2已用于接口检查，必须标记seen而不是留出；最终留出须选从未用于方案调整的其余身份。沿当前已验证的独立RoboCasa365版本，不自动追随最新版；catalog声明包版本不冒充本轮重新安装或验证的二进制版本。三项单列保全开销/无害性，不保证都有信息风险；没有真实机会的机制指标标N/A。[B7]
 
 ## 4. 必须新增、独立命名的因果协议 EVID-Preserve v1
 
@@ -60,7 +60,7 @@ RoboCasa固定原有注册ID：`ArrangeBreadBasket`、`CoffeeSetupMug`、`StackB
 
 三种模板族，每族2个开发实例+2个留出实例，共12实例：
 
-1. `EP-acquire-before-cover-{drawer,container}`：目标身份线索只在可选择的检查视角可见；cover/close后仍可恢复但需重开，或任务显式不允许重开。分别形成可恢复/不可恢复条件。agent一开始知道完整任务需求，不能依赖未来才偷偷揭示的指令；必须先观察再覆盖，模型不能读纹理标签文件。**是否能用原π完成检查动作先作资格可行性审计，失败不靠oracle替agent执行。**
+1. `EP-acquire-before-cover-{drawer,container}`：目标身份线索只在可选择的检查视角可见；cover/close后仍可恢复但需重开，或任务显式不允许重开。分别形成可恢复/不可恢复条件。agent一开始知道完整任务需求，不能依赖未来才偷偷揭示的指令；必须先观察再覆盖，模型不能读纹理标签文件。**先在固定开发样本记录原π检查动作的可行性，低层失败照常保留；不设资格筛选门，也不靠oracle替agent执行。**
 2. `EP-bind-before-transfer-{drawer,container}`：先观察关系并允许保存，跨相似容器转移后需要正确对象绑定。开发为无交换；留出采用公开可见的不同移动轨迹/顺序。另设可见交换条件检验绑定过期后的重新核实，不准凭private object IDs保持神谕追踪。
 3. `EP-dependency-before-reorder-{drawer,container}`：两个物理目标皆可先做，其中一个会遮住后续取证视角；改变操作顺序可保留证据。对照条件让同一遮挡与后续目标无关，测过度保全。原子取放/开关动作集合不变，不增新控制器。
 
@@ -131,6 +131,6 @@ RoboCasa固定原有注册ID：`ArrangeBreadBasket`、`CoffeeSetupMug`、`StackB
 
 ## 来源与核验
 
-固定源码目录本地已只读核验：LADDER commit `d645441a716595cce2ef9fb96abf2a324dc25b21`；RoboMME `5753639d62c167ba74fa64fcce8b2f4895d08e7b`；RoboMemArena `830a31ae7c08fb99f514843275cd264a2bf36f16`。原生具体task IDs来自这些公开源码，非模型猜测。当前README较新内容不自动覆盖固定runtime。PRO/RC具体版本和task-name映射仍须在隔离manifest准备时核对已验证route，不猜SHA。
+固定源码目录本地已只读核验：LADDER commit `d645441a716595cce2ef9fb96abf2a324dc25b21`；RoboMME `5753639d62c167ba74fa64fcce8b2f4895d08e7b`；RoboMemArena `830a31ae7c08fb99f514843275cd264a2bf36f16`。原生具体task IDs来自这些公开源码，非模型猜测。当前README不自动覆盖固定runtime。PRO的swap语义task-name/初态映射仍须在准备快照时核对；RC三项ID及允许seed已与服务器原target50核对，catalog声明rpent-robocasa365 1.0.1，实际执行仍绑定既有独立源码锁。
 
 [B1] [RoboMME 官方任务目录与split](https://github.com/RoboMME/robomme_benchmark)。[B2] [公开IO规范](https://github.com/RoboMME/robomme_benchmark/blob/main/doc/env_format.md)。[B3] [RoboMemArena作者任务表](https://robomemarena.github.io/)。[B4] [官方reference evaluation](https://github.com/OpenHelix-Team/RoboMemArena/tree/main/evaluation_benchmark/reference_evaluation)。[B5] [LADDER composition固定任务与配置](https://github.com/insait-institute/ladder/tree/main/ladder/components/inference/robots/robolab/composition)。[B6] [LIBERO-PRO论文](https://arxiv.org/abs/2510.03827)。[B7] [RoboCasa官方项目](https://robocasa.ai/)。

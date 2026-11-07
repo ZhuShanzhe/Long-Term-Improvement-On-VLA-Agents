@@ -11,6 +11,7 @@ The execution stack uses Codex for reasoning, tools, versioned evidence and offl
 - [Methods, primary references and novelty boundaries](research/pre_action_evidence_20261107/design/methods_and_related_work.md)
 - [Codex implementation blueprints](research/pre_action_evidence_20261107/design/implementation_blueprints.md)
 - [Public execution/evidence foundation](research/pre_action_evidence_20261107/foundation/README.md)
+- [Independent annotation and offline metric tools](research/pre_action_evidence_20261107/analysis/annotation_guide.md)
 - [Actual delivery status and remaining research](research/pre_action_evidence_20261107/DELIVERY_STATUS.md)
 
 RoboMME and RoboMemArena are the primary mechanism-development routes; LADDER tests long-horizon continuity and unnecessary-check overhead. LIBERO-PRO and RoboCasa provide separate transfer checks. Proposed EVID-Preserve scenarios are an independent diagnostic extension, not official native benchmark scores.
@@ -22,7 +23,8 @@ Within each benchmark, all comparison groups freeze the upper model/effort, Code
 The public foundation includes provenance/temporal evidence logs, bounded memory-tool compatibility, shared-budget injection, immutable profile templates and offline metrics. It has CPU tests; the proposed predictors, selectors and evidence skills are research extension points, not completed native experiments. No private keys, datasets, weights, raw observations or HTTP payloads belong in Git.
 
 ```bash
-python -B -m unittest discover -s research/pre_action_evidence_20261107/foundation -p test_foundation.py
+python -B -m unittest discover -s research/pre_action_evidence_20261107/foundation -p 'test_*.py'
+python -B -m unittest discover -s research/pre_action_evidence_20261107/analysis -p test_metrics.py
 ```
 
 ## Historical work

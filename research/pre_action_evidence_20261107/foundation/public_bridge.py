@@ -4,7 +4,12 @@ from evidence_foundation import EvidenceLedger, encoded
 class PublicBridge:
     def __init__(self, ledger: EvidenceLedger, original_executor, public_projector, cap=None, *, original_charge=None, fixture_mode=False):
         self.ledger, self.executor, self.projector = ledger, original_executor, public_projector
-        self.cap, self.used, self.dispatched = cap, 0, set()
+        self.cap, self.used = cap, 0
+        self.fixture_mode = fixture_mode
+        # Ledger construction already verified its complete hash chain. A proposal
+        # is a durable dispatch intent, including attempts that raised before return.
+        # Restart must never turn an uncertain physical result into permission to replay.
+        self.dispatched = {e['body']['call_id'] for e in ledger.events if e['kind'] == 'proposal'}
         if original_charge is None and not fixture_mode:
             raise ValueError('Production requires the original shared budget charge callback')
         if original_charge is None and (type(cap) is not int or cap < 1):
@@ -31,12 +36,17 @@ class PublicBridge:
             rows.pop()
         return {'rows': rows, 'truncated': len(rows) != len(evidence_ids)}
 
-    def execute_original_proposal(self, call_id, original_arguments):
+    def execute_original_proposal(self, call_id, original_arguments, *, original_tool_name=None):
         if call_id in self.dispatched: raise RuntimeError('PhysicalReplayForbidden')
-        self._charge('act')
+        if original_tool_name is None:
+            if not self.fixture_mode: raise ValueError('Production requires original host tool name')
+            original_tool_name = 'act'
+        if not isinstance(original_tool_name, str) or not original_tool_name or len(original_tool_name)>128:
+            raise ValueError('Invalid original host tool name')
+        self._charge(original_tool_name)
         # Only an original host-accepted complete proposal enters this method.
         # No generation, parsing shortcuts, repair/retry, interrupt or rescoring here.
-        self.ledger._append('proposal', {'call_id': call_id, 'original_arguments': original_arguments})
+        self.ledger._append('proposal', {'call_id': call_id, 'original_tool_name': original_tool_name, 'original_arguments': original_arguments})
         self.dispatched.add(call_id)  # mark before call; exceptions never replay
         returned = self.executor(original_arguments)
         evidence_id = self.observe_original(returned)

@@ -43,7 +43,9 @@
 
 原始结果规范化成 `case_result.template.json` 形状，逐行JSONL。只有 `valid is True` 且原 `native` 严格bool才记T/F。缺失/无效False是UNKNOWN；integration-only剔除。相同case重复记录直接拒绝，必须在导入时显式选择最终attempt，不按最高分选。当前case_id应包含attempt，分析配对时另按task/seed/arm配对；原有效baseline不被新attempt替换。
 
-`aggregate` 统计有效覆盖率、原native成功率、行动前保全率、后续决策准确率、过期证据使用数与恢复步数；来源是独立离线标注，不是模型自述。没有eligible loss标签时保全率为null，没有未来决策时准确率为null。成本缺测计入resource_missing_cases，合计只表示已测样本，不当作全体成本；每case usage只取最后累计一次，不是账单。bootstrap/paired CI、可获取性标注可靠性、反事实因果收益需实验分析另实现，不能拿这些描述性计数替代因果结论。
+`aggregate` 统计有效覆盖率、原native成功率、行动前保全率、后续决策准确率、过期证据使用数与恢复步数；来源是独立离线标注，不是模型自述。没有eligible loss标签时保全率为null，没有未来决策时准确率为null。成本缺测计入resource_missing_cases，合计只表示已测样本，不当作全体成本；每case usage只取最后累计一次，不是账单。配对CI使用后述独立脚本；可获取性标注可靠性、反事实因果收益仍需实验验证，不能拿这些描述性计数替代因果结论。
+
+机制标签也严格区分未知：`preserved_before_loss`、`correct`、`stale_evidence_used` 只有真正JSON bool才进入各自已标注分母；False是有效负标签，null/缺失/字符串/数字1等均为unknown。输出 `*_labeled`、`*_unknown` 和 `*_label_coverage`，率只对已标注事件计算；全部未知则率为null，不补0。eligible/future_decisions仍是总事件数，用来报告标注覆盖，不能隐去未标注样本。native评分的严格valid+bool口径不变。事件统计只是机制描述，不当成独立task样本做CI。
 
 policy进程不得读取带 `offline_labels` 的case结果、分支未来、scorer或完整env.info；评价数据放独立目录和进程权限，路径不能注册为public_asset。
 
@@ -53,11 +55,25 @@ policy进程不得读取带 `offline_labels` 的case结果、分支未来、scor
 python -B paired_ci.py OFFLINE_PREREGISTERED_CASES.jsonl --reference S0H0 --target S1H1 --seed 20261107 --resamples 10000
 ```
 
-## CPU验证命令
+## 纯离线配对实验矩阵准备
+
+`prepare_cases.py` 读取 `../design/task_panel.proposed.json` 与现有MAIN或CORE配置，为**指定的一条benchmark和一个panel**展开原task/seed/episode × arms，在每个配对block内用固定seed打乱组顺序；输出原任务身份、common指纹、研究context指纹和独立run_id，全部 `execution_enabled=false`。它不执行launcher、不加载模型/服务器/私钥、不改任务和预算，没有 `--execute`。输出用独占新建文件模式，拒绝覆盖旧计划。不同 `--plan-id` 产生独立run_id；同plan-id固定复现，因此已启动命名空间不得用同plan-id重放。
+
+支持RoboMME原panel的 `dataset/tasks/episodes`；reset seed由原builder metadata解析，离线未知为null，不从episode编号猜。RMA保留完整数字前缀task身份，并按原launcher传task_id整数+seed；LADDER传task+seed，后两者episode_id明确标为native_reset_by_seed，不虚构原API不存在的episode参数。支持development、heldout_same_task，RMA另支持heldout_task，LADDER另支持heldout_composition，MME另支持heldout_mechanism。PRO/RC因语义/catalog/version绑定未完成，明确拒绝准备正式计划；不会借其他路线伪造任务。
+
+所有输出是**提议研究split**、seen身份待历史记录审查、原目录绑定待核验，不自动宣称unseen/全新/benchmark官方split；MME原val/test只表示数据集字段。准备行同时保留valid=false/native=null，正式导入结果前不得省略双方均未运行block。例：
+
+```powershell
+D:/anaconda3/python.exe -u -B research/pre_action_evidence_20261107/foundation/prepare_cases.py --benchmark LADDER --panel development --family core2x2 --plan-id dev-core-review-v1 --random-seed 20261107 --output research/pre_action_evidence_20261107/prepared/LADDER-dev-core-review-v1.json
+```
+
+输出仍需实际catalog/hash绑定、seen过滤与原globalflock/资源检查之后，才能另经独立launcher准备执行；本脚本无执行通道。
 
 `public_bridge.py` 是可注入原 executor / 原公开 projector 的无策略桥，fixture 已走通 `observation → ledger → bounded memory_query → original proposal record → executor stub → returned observation`。它不替换现有 host 完整提案/成功 item/completed/interrupt ack 门；只有已被原 host 接受的提案才可进入。一次原 call_id 派发前先登记，异常也不重发动作。query与act共享同一决策账本；返回观测不是额外模型调用。**生产构造必须传 `original_charge(tool_name)` 回调**，由原共享 ledger 唯一扣费；不传即拒绝构造，不会自己分配第二份cap。该回调耗尽时必须原样抛错，在派发前停止。仅显式 `fixture_mode=True` 才允许本地cap合成计数。host已有扣费时接线只保留一个实际扣费点，禁止重复扣费或用no-op回调绕过。
 
 `memory_tool_facade.py` 提供与旧工具**输入字段同形**的 `.call(name,args) → inputText` facade：`memory_query(query,sql,params)`、`memory_write(text,entity,attribute,value,evidence_ids,supersedes)`。构造须传显式 `tool_schema_ref`，核对inputSchema完全匹配；`original_memory_schema_reference.json` 从旧工程纯 `tool_specs()` AST提取，未导入或执行旧runtime。新副本可用该facade替换memory seam，现live不接线。检索是确定性有界词匹配，最多64条/2048字节单次、4096字节每原决策、4read/1write；所有尝试包括非法SQL均扣原工具预算。SQL与非空params明确拒绝，没有eval、文件、网络或动作能力。写入必须引用本episode已存在的**原公开observation**，不接受claim作为事实证据；supersedes只使旧current-state claim失效，不撤销原观测或历史。confidence=null表示未知、不伪造校准概率。写入结果不证明语义真值。只做公共接线，不实现预测或联合选择。
+
+生产调用 `execute_original_proposal(..., original_tool_name=原host实际工具名)` 必须显式指定工具名，view按view扣原预算并记录，不能默认算act；仅fixture允许省略时默认act。桥构造从已通过哈希链验证的ledger里全部proposal记录重建去重集合。proposal是写入后再进入原执行器的持久派发意图：即使原执行器随后异常、缺返回或桥进程重启，原call_id也不能重发。该保守规则避免不确定物理结果被当成未执行；不能拿恢复后RAM集合为空重新派发。预算恢复仍由原共享ledger回调负责，不能以桥的调试used值替代。
 
 生产宿主应在原policy决策开始时调用 `facade.begin_decision()` 一次；key重试/压缩不得重置工具或读出预算。新/旧事件ID空间不得混接，必须由新副本从原观察重新登记并把新ID hint交同一Codex；不能把旧claim ID当新原观察。新输出是兼容inputText envelope及工具inputSchema，具体row字段为新证据协议，不宣称旧返回内容字节等价。
 
@@ -67,12 +83,14 @@ python -B paired_ci.py OFFLINE_PREREGISTERED_CASES.jsonl --reference S0H0 --targ
 python -B bind_deployed_readonly.py --common-bound ORIGINAL/runtime-g8/common-bound.json --route-profile ORIGINAL_CASE/profile.json --component-map REVIEWED_COMPONENT_MAP.json --six-profiles configs/LADDER-six-arms.json --output-dir NEW_NAMESPACE/LADDER-frozen
 ```
 
+## CPU验证命令
+
 在仓库根运行（Windows）：
 
 ```powershell
-D:/anaconda3/python.exe -u -B -m unittest discover -s research/pre_action_evidence_20261107/foundation -p test_foundation.py
+D:/anaconda3/python.exe -u -B -m unittest discover -s research/pre_action_evidence_20261107/foundation -p test_*.py
 D:/anaconda3/python.exe -u -B research/pre_action_evidence_20261107/foundation/build_profiles.py
 D:/anaconda3/python.exe -u -B research/pre_action_evidence_20261107/foundation/evidence_foundation.py validate-six research/pre_action_evidence_20261107/foundation/configs/RoboMemArena-six-arms.json
 ```
 
-Linux使用同等Python3解释器。标准库，无第三方安装/下载/模型。24项测试覆盖日志篡改、未知/过期/历史分离、未来引用、特权字段与路径拒绝、五路线×主表/阶段组/CORE2x2非上下文一致、核心内存一致、动作/预算漂移、跨路线绑定、未解析哈希禁止激活、严格bool/UNKNOWN/接口诊断与成本口径、完整公开fixture闭环及原receipt只读绑定/禁止覆盖、task-macro配对CI/固定seed/UNKNOWN敏感范围/拒绝重复与跨benchmark混表、旧memory输入schema→新证据账本→原共享扣费、claim不能冒充原证据、SQL拒绝仍扣费、生产缺共享扣费拒绝构造、memory耗尽原cap后阻止动作派发。真实环境接线效果尚未运行，不生成native分数。
+Linux使用同等Python3解释器。标准库，无第三方安装/下载/模型。32项测试（test_foundation.py 28项、test_prepare_cases.py 4项）覆盖日志篡改、未知/过期/历史分离、未来引用、特权字段与路径拒绝、五路线×主表/阶段组/CORE2x2非上下文一致、核心内存一致、动作/预算漂移、跨路线绑定、未解析哈希禁止激活、严格bool/UNKNOWN/接口诊断与成本口径、完整公开fixture闭环及原receipt只读绑定/禁止覆盖、task-macro配对CI/固定seed/UNKNOWN敏感范围/拒绝重复与跨benchmark混表、旧memory输入schema→新证据账本→原共享扣费、claim不能冒充原证据、SQL拒绝仍扣费、生产缺共享扣费拒绝构造、memory耗尽原cap后阻止动作派发、原工具名view扣费与显式要求、执行器异常后重启从ledger重建去重、机制bool/unknown分母与全部未知不填分、三路线实际任务面板展开/配对顺序复现/独立命名空间/未知seed不猜/PRO-RC待绑定拒绝。真实环境接线效果尚未运行，不生成native分数。

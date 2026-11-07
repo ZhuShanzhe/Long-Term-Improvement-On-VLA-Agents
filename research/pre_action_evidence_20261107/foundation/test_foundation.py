@@ -100,6 +100,28 @@ class MetricsTests(unittest.TestCase):
         self.assertEqual(r['pre_loss_preservation_rate'], .5)
         self.assertEqual(r['future_decision_accuracy'], 0)
         self.assertEqual(r['recovery_steps'], 7)
+    def test_unknown_mechanism_labels_are_not_false(self):
+        r=aggregate([{'case_id':'a','offline_labels':[
+            {'kind':'eligible_loss','preserved_before_loss':True},
+            {'kind':'eligible_loss','preserved_before_loss':False},
+            {'kind':'eligible_loss','preserved_before_loss':None},
+            {'kind':'eligible_loss','preserved_before_loss':1},
+            {'kind':'future_decision','correct':True,'stale_evidence_used':False},
+            {'kind':'future_decision','correct':False,'stale_evidence_used':True},
+            {'kind':'future_decision','correct':None,'stale_evidence_used':None},
+            {'kind':'future_decision','correct':'unknown'}]}])
+        self.assertEqual(r['pre_loss_preservation_rate'],.5)
+        self.assertEqual(r['future_decision_accuracy'],.5)
+        self.assertEqual(r['stale_evidence_use_rate'],.5)
+        self.assertEqual((r['preservation_unknown'],r['future_decision_unknown'],r['stale_use_unknown']),(2,2,2))
+        self.assertEqual((r['preservation_label_coverage'],r['future_decision_label_coverage'],r['stale_use_label_coverage']),(.5,.5,.5))
+    def test_only_unknown_mechanism_labels_have_null_rates(self):
+        r=aggregate([{'case_id':'a','offline_labels':[{'kind':'eligible_loss'}, {'kind':'future_decision','correct':None}]}])
+        self.assertIsNone(r['pre_loss_preservation_rate'])
+        self.assertIsNone(r['future_decision_accuracy'])
+        self.assertIsNone(r['stale_evidence_use_rate'])
+        self.assertEqual(r['preservation_label_coverage'],0)
+        self.assertEqual(r['future_decision_label_coverage'],0)
 
 class BridgeAndBindingTests(unittest.TestCase):
     def test_original_fixture_closed_loop_and_no_replay(self):
@@ -178,7 +200,7 @@ class OriginalMemorySeamTests(unittest.TestCase):
         claim=json.loads(response[0]['text'])['event_id']
         result=self.facade.call('memory_query',{'query':'box','sql':'','params':[]})
         self.assertTrue(json.loads(result[0]['text'])['claims_are_not_verified_facts'])
-        self.bridge.execute_original_proposal('act1',{'instruction':'unchanged'})
+        self.bridge.execute_original_proposal('act1',{'instruction':'unchanged'},original_tool_name='act')
         self.assertEqual(self.charges,['memory_write','memory_query','act'])
         self.assertIsNone(self.ledger.events[1]['body']['confidence'])
         self.facade.begin_decision()
@@ -188,7 +210,7 @@ class OriginalMemorySeamTests(unittest.TestCase):
         self.assertIsNone(self.bridge.cap)
     def test_original_shared_budget_stops_dispatch_after_memory_calls(self):
         for _ in range(5): self.bridge.memory_query([self.obs])
-        with self.assertRaises(RuntimeError): self.bridge.execute_original_proposal('blocked-act',{})
+        with self.assertRaises(RuntimeError): self.bridge.execute_original_proposal('blocked-act',{},original_tool_name='act')
         self.assertNotIn('blocked-act',self.bridge.dispatched)
         self.assertEqual(len(self.ledger.events),1)
     def test_sql_is_rejected_and_charged_not_executed(self):
@@ -200,5 +222,22 @@ class OriginalMemorySeamTests(unittest.TestCase):
         values=self.write([self.obs]);values['supersedes']=[self.obs]
         with self.assertRaises(ValueError): self.facade.call('memory_write',values)
         self.assertEqual(len(self.ledger.events),1)
+    def test_production_requires_and_charges_actual_view_tool(self):
+        with self.assertRaises(ValueError): self.bridge.execute_original_proposal('view-missing',{})
+        self.assertEqual(self.charges,[])
+        self.bridge.execute_original_proposal('view-original',{'camera':'original'},original_tool_name='view')
+        self.assertEqual(self.charges,['view'])
+        proposal=next(e for e in self.ledger.events if e['kind']=='proposal')
+        self.assertEqual(proposal['body']['original_tool_name'],'view')
+    def test_restart_preserves_failed_dispatch_intent(self):
+        def raises_after_dispatch(args): raise RuntimeError('Original executor returned no result')
+        self.bridge.executor=raises_after_dispatch
+        with self.assertRaises(RuntimeError): self.bridge.execute_original_proposal('uncertain-act',{},original_tool_name='act')
+        reopened=EvidenceLedger(self.ledger.path,'old-schema-fixture',['rgb1'])
+        called=[]
+        restarted=PublicBridge(reopened,lambda args:called.append(args),self.bridge.projector,original_charge=lambda tool:self.charges.append(tool))
+        with self.assertRaises(RuntimeError): restarted.execute_original_proposal('uncertain-act',{},original_tool_name='act')
+        self.assertEqual(called,[])
+        self.assertEqual(self.charges,['act'])
 
 if __name__ == '__main__': unittest.main(verbosity=2)

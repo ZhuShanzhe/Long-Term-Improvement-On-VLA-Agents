@@ -42,6 +42,8 @@ H4：离线分支价值监督在未见任务族/操作组合上改善预测校�
 
 现有五路线已有原生闭环证据，但不是五者都已有完整任务分数：LADDER有原生True，LIBERO-PRO有原生True，RoboCasa有原生有效False；RoboMME与RoboMemArena有执行接口证明，后续有限验证仍按实时原日志判定。所有结果保留原路径与版本，不把接口PASS、CLI退出码、日志增长或attempts_complete当成任务成功。
 
+本轮配置期间的只读记录还显示，RoboMemArena一个既定验证运行达到原150次上层决策cap，原评估被PolicyDecisionBudgetExceeded中断，保留UNKNOWN；资源收尾后才接RoboMME。这是预算删失，不能算任务False，也不能靠延长决策cap补分。新实验将预算耗尽率、实际原生步数和评分覆盖率一起报告。
+
 上述事实只支持开展更可归因的研究，尚未直接证明“压缩丢证据”是所有机器人失败的根因。新实验必须同时标注上层决策、证据采集/绑定/利用、工具交付、π执行、基础设施和预算耗尽，避免把所有失败统称记忆失败。
 
 ## 4. Coding agent 的优势应如何进入方法
@@ -144,7 +146,7 @@ M4学习与泛化：仅在可靠模拟state分支或明确配对重置可用时�
 
 LIBERO-PRO精确现有适配身份：suite `libero_object_swap` / `libero_goal_swap`，各task-index `1,3,8`；开发 reset seeds `0,1`，复核 `2–9`。这是现有launcher的0-based task-index，不是新命名的语义任务；评测锁定时同时导出对应原 task_name、BDDL SHA 和 init-state ID，防止不同版本索引漂移。未完成此解析的身份保持 `catalog_binding_pending`，禁止将其计入正式任务列表。真实PRO扰动入口、原初态与原native评分保留，不用标准LIBERO冒充PRO。[B6]
 
-RoboCasa固定原有注册ID：`ArrangeBreadBasket`、`CoffeeSetupMug`、`StackBowlsCabinet`。开发 seeds `0,1`；迁移 seeds `2–9`，并记录精确layout/style/init-state metadata。现有Coffee seed2已用于接口检查，必须标记seen而不是留出；最终留出须选从未用于方案调整的其余身份。不同RoboCasa版本task数量/步数已变化，沿当前已验证版本，不能直接切RoboCasa365最新版。三项应单列“保全策略开销/无害性”，不保证都有信息风险；若没有真证据损失机会则主机制指标标N/A。[B7]
+RoboCasa固定原有注册ID：`ArrangeBreadBasket`、`CoffeeSetupMug`、`StackBowlsCabinet`。按服务器当前target50原catalog核对，开发 seeds `1,2`（不使用不在catalog的seed0）；CoffeeSetupMug迁移候选 seeds `3–10`，两项composite迁移候选 seeds `3–5`，并记录精确layout/style/init-state metadata。现有Coffee seed2已用于接口检查，必须标记seen而不是留出；最终留出须选从未用于方案调整的其余身份。沿当前已验证的独立RoboCasa365版本，不自动追随最新版；catalog声明包版本不冒充本轮重新安装或验证的二进制版本。三项单列保全开销/无害性，不保证都有信息风险；没有真实机会的机制指标标N/A。[B7]
 
 ## 4. 必须新增、独立命名的因果协议 EVID-Preserve v1
 
@@ -152,7 +154,7 @@ RoboCasa固定原有注册ID：`ArrangeBreadBasket`、`CoffeeSetupMug`、`StackB
 
 三种模板族，每族2个开发实例+2个留出实例，共12实例：
 
-1. `EP-acquire-before-cover-{drawer,container}`：目标身份线索只在可选择的检查视角可见；cover/close后仍可恢复但需重开，或任务显式不允许重开。分别形成可恢复/不可恢复条件。agent一开始知道完整任务需求，不能依赖未来才偷偷揭示的指令；必须先观察再覆盖，模型不能读纹理标签文件。**是否能用原π完成检查动作先作资格可行性审计，失败不靠oracle替agent执行。**
+1. `EP-acquire-before-cover-{drawer,container}`：目标身份线索只在可选择的检查视角可见；cover/close后仍可恢复但需重开，或任务显式不允许重开。分别形成可恢复/不可恢复条件。agent一开始知道完整任务需求，不能依赖未来才偷偷揭示的指令；必须先观察再覆盖，模型不能读纹理标签文件。**先在固定开发样本记录原π检查动作的可行性，低层失败照常保留；不设资格筛选门，也不靠oracle替agent执行。**
 2. `EP-bind-before-transfer-{drawer,container}`：先观察关系并允许保存，跨相似容器转移后需要正确对象绑定。开发为无交换；留出采用公开可见的不同移动轨迹/顺序。另设可见交换条件检验绑定过期后的重新核实，不准凭private object IDs保持神谕追踪。
 3. `EP-dependency-before-reorder-{drawer,container}`：两个物理目标皆可先做，其中一个会遮住后续取证视角；改变操作顺序可保留证据。对照条件让同一遮挡与后续目标无关，测过度保全。原子取放/开关动作集合不变，不增新控制器。
 
@@ -223,7 +225,7 @@ RoboCasa固定原有注册ID：`ArrangeBreadBasket`、`CoffeeSetupMug`、`StackB
 
 ## 来源与核验
 
-固定源码目录本地已只读核验：LADDER commit `d645441a716595cce2ef9fb96abf2a324dc25b21`；RoboMME `5753639d62c167ba74fa64fcce8b2f4895d08e7b`；RoboMemArena `830a31ae7c08fb99f514843275cd264a2bf36f16`。原生具体task IDs来自这些公开源码，非模型猜测。当前README较新内容不自动覆盖固定runtime。PRO/RC具体版本和task-name映射仍须在隔离manifest准备时核对已验证route，不猜SHA。
+固定源码目录本地已只读核验：LADDER commit `d645441a716595cce2ef9fb96abf2a324dc25b21`；RoboMME `5753639d62c167ba74fa64fcce8b2f4895d08e7b`；RoboMemArena `830a31ae7c08fb99f514843275cd264a2bf36f16`。原生具体task IDs来自这些公开源码，非模型猜测。当前README不自动覆盖固定runtime。PRO的swap语义task-name/初态映射仍须在准备快照时核对；RC三项ID及允许seed已与服务器原target50核对，catalog声明rpent-robocasa365 1.0.1，实际执行仍绑定既有独立源码锁。
 
 [B1] [RoboMME 官方任务目录与split](https://github.com/RoboMME/robomme_benchmark)。[B2] [公开IO规范](https://github.com/RoboMME/robomme_benchmark/blob/main/doc/env_format.md)。[B3] [RoboMemArena作者任务表](https://robomemarena.github.io/)。[B4] [官方reference evaluation](https://github.com/OpenHelix-Team/RoboMemArena/tree/main/evaluation_benchmark/reference_evaluation)。[B5] [LADDER composition固定任务与配置](https://github.com/insait-institute/ladder/tree/main/ladder/components/inference/robots/robolab/composition)。[B6] [LIBERO-PRO论文](https://arxiv.org/abs/2510.03827)。[B7] [RoboCasa官方项目](https://robocasa.ai/)。
 
@@ -442,8 +444,11 @@ constraints:
 - 固定源码中逐项核对37个原生task ID（LADDER16、RoboMME10、RoboMemArena11）；PRO/RC沿现有独立入口并保留语义映射与版本绑定门。已使用过的开发身份不冒充未见测试集。
 - 五路线分别生成主表六组、同内存的CORE 2×2、阶段方法配置；公共字段指纹逐路线相同，研究字段单独版本化。原RGB不削减，存储容量候选不是已确定的长图像截断规则。
 - 只追加证据账本、时序与来源校验、旧memory工具字段兼容facade、必须注入原预算回调的公开执行桥、离线聚合和task-cluster配对CI已实现。
-- 24项CPU测试通过，包括旧memory schema→证据账本→原预算→执行器fixture闭环、无物理重放、claim不冒充来源事实、错误预算调用计费、严格布尔/UNKNOWN及五路线配置一致性。
+- 39项CPU测试通过（28项证据底座、4项任务矩阵、7项指标），包括旧memory schema→证据账本→原预算→执行器fixture闭环、无物理重放、claim不冒充来源事实、严格布尔/UNKNOWN及五路线配置一致性。
+- 已提供独立标注指南与ESC、LMER、旧绑定误用、过度保全、Brier/ECE和成本MAE离线工具；未知标签不补False。开发CORE 2×2配对矩阵已离线生成：MME 240行、RMA 100行、LADDER 64行，全部禁止执行，不代表已启动404次测试。
 - 服务器同步到独立新目录；Git研究材料在独立干净检出整理，不覆盖原有脏工作树。现有有限测试不被停止、热改或抢占GPU；本次未为研究方案另起付费测试。
+
+服务器只读核验还确认：五条现有独立路线及新对比面板可对应，18项既有执行源码锁一致；未修改原launcher、模型或私有密钥。DROID复用此前完整内容哈希并核对文件身份未变；RMA记录已有冻结LIBERO路线、norm实际哈希和HF预期内容摘要，本次不在活任务期间重新通读大权重。该审计不是新方法的native成绩。
 
 ## 后续真正需要研发的内容
 

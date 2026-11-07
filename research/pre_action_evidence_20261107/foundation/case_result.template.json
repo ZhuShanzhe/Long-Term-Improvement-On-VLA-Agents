@@ -1,11 +1,15 @@
 {
   "case_id": "benchmark/task/seed/arm/attempt",
   "benchmark": "EXACT_ROUTE",
+  "task_id": "OFFICIAL_TASK_ID_FROM_PREREGISTERED_MANIFEST",
+  "seed": 0,
+  "episode_id": "ORIGINAL_EPISODE_ID",
   "arm": "B0_native",
   "valid": false,
   "native": null,
   "integration_only": false,
   "invalid_reason": "PENDING_NOT_A_TASK_FAILURE",
   "offline_labels": [],
-  "measurements_note": "Only add decisions/physical_steps/preservation_actions/final_reported_usage if actually measured. Missing counters are UNKNOWN, never fabricated zero. Usage is final cumulative once, not invoice."
+  "measurements_note": "Only add decisions/physical_steps/preservation_actions/final_reported_usage if actually measured. Missing counters are UNKNOWN, never fabricated zero. Usage is final cumulative once, not invoice.",
+  "paired_manifest_note": "Materialize one UNKNOWN row for every preregistered task/seed/episode/arm without a result, including blocks where BOTH arms never ran. paired_ci union keys cannot discover completely absent paired blocks; do not import only observed/successful cases."
 }

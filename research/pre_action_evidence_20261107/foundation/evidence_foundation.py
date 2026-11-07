@@ -194,6 +194,9 @@ def aggregate(rows):
               'decisions': 0, 'physical_steps': 0, 'preservation_actions': 0, 'final_reported_usage': {},
               'eligible': 0, 'preserved_before_loss': 0, 'future_decisions': 0, 'correct_future_decisions': 0,
               'stale_uses': 0, 'recoveries': 0, 'recovery_steps': 0}
+    result.update({'preservation_labeled': 0, 'preservation_unknown': 0,
+                   'future_decision_labeled': 0, 'future_decision_unknown': 0,
+                   'stale_use_labeled': 0, 'stale_use_unknown': 0})
     result['resource_missing_cases'] = {k: 0 for k in ('decisions', 'physical_steps', 'preservation_actions', 'final_reported_usage')}
     for row in rows:
         if row.get('integration_only', False):
@@ -218,11 +221,26 @@ def aggregate(rows):
         for event in row.get('offline_labels', []):
             if event['kind'] == 'eligible_loss':
                 result['eligible'] += 1
-                result['preserved_before_loss'] += int(event['preserved_before_loss'] is True)
+                label = event.get('preserved_before_loss')
+                if type(label) is bool:
+                    result['preservation_labeled'] += 1
+                    result['preserved_before_loss'] += int(label)
+                else:
+                    result['preservation_unknown'] += 1
             elif event['kind'] == 'future_decision':
                 result['future_decisions'] += 1
-                result['correct_future_decisions'] += int(event['correct'] is True)
-                result['stale_uses'] += int(event.get('stale_evidence_used') is True)
+                label = event.get('correct')
+                if type(label) is bool:
+                    result['future_decision_labeled'] += 1
+                    result['correct_future_decisions'] += int(label)
+                else:
+                    result['future_decision_unknown'] += 1
+                stale = event.get('stale_evidence_used')
+                if type(stale) is bool:
+                    result['stale_use_labeled'] += 1
+                    result['stale_uses'] += int(stale)
+                else:
+                    result['stale_use_unknown'] += 1
             elif event['kind'] == 'recovery':
                 steps = event['steps']
                 if type(steps) is not int or steps < 0: raise ValueError('Invalid recovery steps')
@@ -232,8 +250,12 @@ def aggregate(rows):
     valid = result['native_true'] + result['native_false']
     result['valid_native_rate'] = result['native_true'] / valid if valid else None
     result['valid_coverage'] = valid / (len(rows)-result['integration_only']) if len(rows)>result['integration_only'] else None
-    result['pre_loss_preservation_rate'] = result['preserved_before_loss'] / result['eligible'] if result['eligible'] else None
-    result['future_decision_accuracy'] = result['correct_future_decisions'] / result['future_decisions'] if result['future_decisions'] else None
+    result['pre_loss_preservation_rate'] = result['preserved_before_loss'] / result['preservation_labeled'] if result['preservation_labeled'] else None
+    result['future_decision_accuracy'] = result['correct_future_decisions'] / result['future_decision_labeled'] if result['future_decision_labeled'] else None
+    result['stale_evidence_use_rate'] = result['stale_uses'] / result['stale_use_labeled'] if result['stale_use_labeled'] else None
+    result['preservation_label_coverage'] = result['preservation_labeled'] / result['eligible'] if result['eligible'] else None
+    result['future_decision_label_coverage'] = result['future_decision_labeled'] / result['future_decisions'] if result['future_decisions'] else None
+    result['stale_use_label_coverage'] = result['stale_use_labeled'] / result['future_decisions'] if result['future_decisions'] else None
     result['reported_usage_is_bill'] = False
     return result
 

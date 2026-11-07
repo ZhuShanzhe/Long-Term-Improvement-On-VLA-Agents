@@ -1,0 +1,80 @@
+{
+  "schema": "native-public-catalog-binding-v1",
+  "benchmark": "RoboCasa",
+  "catalog_sha256": "12d8b67b12cfc15d83a120def7b9d36d67d9c07a6c878172433eae16c008e722",
+  "catalog_source": "/root/autodl-tmp/benchmark-pilot-20261021/rpent/official-libero-profile-20261028-v1/source/robots/robocasa/eval/target50.json",
+  "catalog_declared_package": "rpent-robocasa365 1.0.1",
+  "installed_binary_version_claimed": false,
+  "tasks": {
+    "CoffeeSetupMug": {
+      "split": "atomic",
+      "allowed_seeds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "development_seeds": [
+        1,
+        2
+      ],
+      "transfer_candidate_seeds": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "seen_history_review_required": true
+    },
+    "StackBowlsCabinet": {
+      "split": "composite_seen",
+      "allowed_seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "development_seeds": [
+        1,
+        2
+      ],
+      "transfer_candidate_seeds": [
+        3,
+        4,
+        5
+      ],
+      "seen_history_review_required": true
+    },
+    "ArrangeBreadBasket": {
+      "split": "composite_unseen",
+      "allowed_seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "development_seeds": [
+        1,
+        2
+      ],
+      "transfer_candidate_seeds": [
+        3,
+        4,
+        5
+      ],
+      "seen_history_review_required": true
+    }
+  }
+}
