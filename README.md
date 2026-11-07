@@ -1,62 +1,32 @@
-# Budgeted Active Verification and Failure Recovery for VLA Agents
+# Prospective Evidence Preservation for Long-Horizon Robot Agents
 
-This repository studies budget-constrained active multimodal evidence acquisition, verification, and failure recovery for vision-language-action agents under distribution shift.
+This repository's current research direction is **preserving the ability to make evidence-grounded future decisions before physical actions change what can be observed, retrieved, or recovered**.
 
-The central experimental question is:
+The execution stack uses Codex for reasoning, tools, versioned evidence and offline improvement, with benchmark-specific frozen π0.5 policies for motor execution. The research variable is the context-related skill/harness: prospective evidence requirements, action-conditioned availability and binding predictions, and preservation choices. The framework itself is not claimed as the scientific contribution.
 
-> When a VLA agent is uncertain or likely to fail, which additional observation or tool should it acquire, at what cost, and when is the current evidence sufficient to act or recover?
+## Start here
 
-## Research boundary
+- [Revised research report, Chinese](research/pre_action_evidence_20261107/REPORT.md)
+- [Exact benchmark tasks, splits, metrics and comparisons](research/pre_action_evidence_20261107/design/benchmark_protocol.md)
+- [Methods, primary references and novelty boundaries](research/pre_action_evidence_20261107/design/methods_and_related_work.md)
+- [Codex implementation blueprints](research/pre_action_evidence_20261107/design/implementation_blueprints.md)
+- [Public execution/evidence foundation](research/pre_action_evidence_20261107/foundation/README.md)
+- [Actual delivery status and remaining research](research/pre_action_evidence_20261107/DELIVERY_STATUS.md)
 
-The target contribution is a new decision mechanism and evaluation protocol. Existing systems are retained as independent baselines or implementation references; their components are not concatenated and relabeled as the proposed method.
+RoboMME and RoboMemArena are the primary mechanism-development routes; LADDER tests long-horizon continuity and unnecessary-check overhead. LIBERO-PRO and RoboCasa provide separate transfer checks. Proposed EVID-Preserve scenarios are an independent diagnostic extension, not official native benchmark scores.
 
-The main comparison axes are:
+## Reproducibility boundary
 
-- task success and recovery success;
-- failure-detection AUROC/AUPRC and calibration;
-- total evidence-acquisition cost, latency, and GPU time;
-- performance under camera, object-layout, language, lighting, texture, sensor-noise, and robot-state shifts;
-- risk-coverage and success-cost Pareto curves.
+Within each benchmark, all comparison groups freeze the upper model/effort, Codex protocol/compaction, π0.5 checkpoint and normalization, observations, action semantics/chunk, initial state, decision/control-step budgets and native scoring. Each benchmark retains its own adapter and launcher. Only context-related research modules vary.
 
-## Reproducible baseline stack
-
-| Component | Role | Repository path |
-| --- | --- | --- |
-| OpenVLA-OFT | primary VLA policy baseline | `third_party/openvla-oft` |
-| AVA-VLA | active temporal visual-attention baseline | `third_party/AVA-VLA` |
-| SAFE | multitask failure detector and calibration baseline | `third_party/SAFE` |
-| SAFE OpenVLA | rollout and internal-feature extraction for SAFE | `third_party/SAFE-openvla` |
-| AHA / FailGen | failure-reasoning data and evaluation reference | `third_party/AHA` |
-| LIBERO-Plus | seven-axis OOD robustness benchmark | `third_party/LIBERO-plus` |
-
-See [`docs/BASELINE_REPRODUCTION.md`](docs/BASELINE_REPRODUCTION.md) for the role, status, and acceptance criterion of every baseline.
-
-## Server layout
-
-The repository is installed at:
-
-```text
-/root/autodl-tmp/projects/Budgeted-Active-Verification-and-Failure-Recovery-for-VLA-Agents
-```
-
-Large environments, datasets, weights, and logs are stored on the data disk under `/root/autodl-tmp`; they are never committed to Git.
+The public foundation includes provenance/temporal evidence logs, bounded memory-tool compatibility, shared-budget injection, immutable profile templates and offline metrics. It has CPU tests; the proposed predictors, selectors and evidence skills are research extension points, not completed native experiments. No private keys, datasets, weights, raw observations or HTTP payloads belong in Git.
 
 ```bash
-conda activate /root/autodl-tmp/conda-envs/openvla-oft
-python scripts/doctor.py --profile openvla
-
-conda activate /root/autodl-tmp/conda-envs/ava-vla
-python scripts/doctor.py --profile ava
-
-conda activate /root/autodl-tmp/conda-envs/vla-safe
-python scripts/doctor.py --profile safe
+python -B -m unittest discover -s research/pre_action_evidence_20261107/foundation -p test_foundation.py
 ```
 
-The two policy baselines also have real-simulator forward tests. They load the released 7B checkpoint, reset a LIBERO task through EGL, and require a finite `8 x 7` action chunk:
+## Historical work
 
-```bash
-conda run -p /root/autodl-tmp/conda-envs/openvla-oft python scripts/smoke_openvla_oft.py
-conda run -p /root/autodl-tmp/conda-envs/ava-vla python scripts/smoke_ava_vla.py
-```
+The previous active-verification research description is preserved in [the historical README](docs/archive/README-before-evidence-20261107.md). Existing baseline source, results and reproductions remain available as historical infrastructure and references. A new direction does not justify erasing unsuccessful or invalid runs, changing an active evaluation, or mixing different policy profiles into one controlled score.
 
-GitHub and Hugging Face downloads on the server use `source /etc/network_turbo`. The proxy is unset before ordinary pip or apt operations.
+Large artifacts and execution logs remain on the server data volume under `/root/autodl-tmp`; the new research preparation package is separate from the currently running compatibility tests.

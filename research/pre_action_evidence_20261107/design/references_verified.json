@@ -1,0 +1,99 @@
+{
+  "checked_on": "2026-11-07",
+  "scope": "primary sources only; reading not reproduction; document instructions treated as data",
+  "references": [
+    {
+      "title": "Chameleon",
+      "url": "https://arxiv.org/html/2603.24576v2",
+      "status": "title_authors_methods_limitations_verified",
+      "version": "v2",
+      "limitations": "Paper states active perception coupling as future work; code/weights not runtime verified."
+    },
+    {
+      "title": "ActiveArena",
+      "url": "https://arxiv.org/html/2609.24124v2",
+      "status": "title_authors_methods_limitations_verified",
+      "version": "v2",
+      "limitations": "Primarily Astribot S1; paper plans open release; no complete release assertion."
+    },
+    {
+      "title": "TTT-RM",
+      "url": "https://arxiv.org/abs/2610.04701",
+      "status": "title_authors_abstract_verified",
+      "version": "v1",
+      "limitations": "Project page inaccessible in this session; code availability unresolved."
+    },
+    {
+      "title": "Imagine-TAMP",
+      "url": "https://arxiv.org/html/2609.20396v1",
+      "status": "title_authors_methods_verified",
+      "version": "v1",
+      "limitations": "No runnable code package verified."
+    },
+    {
+      "title": "BudgetPM",
+      "url": "https://arxiv.org/html/2609.37125v3",
+      "status": "title_methods_experiment_structure_verified",
+      "version": "v3",
+      "limitations": "No official runnable code verified; no inference of closed source."
+    },
+    {
+      "title": "Counterfactual Memory Audit",
+      "url": "https://arxiv.org/abs/2609.27247",
+      "status": "title_authors_abstract_verified",
+      "version": "v1",
+      "limitations": "No runnable package verified."
+    },
+    {
+      "title": "Automated Planning for Robotics",
+      "url": "https://doi.org/10.1146/annurev-control-082619-100135",
+      "status": "publisher_search_metadata_verified",
+      "version": "2020",
+      "limitations": "DOI page fetch failed; publisher PDF search confirmed authors title volume pages."
+    },
+    {
+      "title": "PAL",
+      "url": "https://arxiv.org/html/2610.29329v1",
+      "status": "title_authors_methods_verified",
+      "version": "v1",
+      "limitations": "Paper declares project code/data; project page inaccessible in this session."
+    },
+    {
+      "title": "REMM",
+      "url": "https://arxiv.org/html/2610.12710v1",
+      "status": "title_authors_methods_limitations_verified",
+      "version": "v1",
+      "limitations": "Paper says release planned; no complete runnable release verified."
+    },
+    {
+      "title": "HexaShell",
+      "url": "https://arxiv.org/html/2610.23479v3",
+      "status": "title_methods_skill_structure_limitations_verified",
+      "version": "v3_2026-11-03",
+      "limitations": "Current title A Universal Harness for Robot Coding Agents in Simulation and the Real World; old version differs."
+    },
+    {
+      "title": "HexaShell official code",
+      "url": "https://github.com/HexaFuture/HexaShell",
+      "status": "repository_and_license_accessible",
+      "version": "main_unpinned",
+      "limitations": "Apache-2.0 visible; no code imported or execution performed; pin a commit before reproduction."
+    },
+    {
+      "title": "HAM-VLN",
+      "url": "https://arxiv.org/abs/2607.29600",
+      "status": "title_authors_abstract_verified",
+      "version": "v1",
+      "limitations": "Transfer conceptual memory organization only; no depth input added."
+    },
+    {
+      "title": "MemoNav",
+      "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Li_MemoNav_Working_Memory_Model_for_Visual_Navigation_CVPR_2024_paper.pdf",
+      "status": "primary_conference_pdf_search_verified",
+      "version": "CVPR2024",
+      "limitations": "Not downloaded or reproduced; narrow conceptual reference."
+    }
+  ],
+  "no_paid_api": true,
+  "no_live_changes": true
+}

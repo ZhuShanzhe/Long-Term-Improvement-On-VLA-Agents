@@ -1,0 +1,228 @@
+{
+  "schema": "evidence-panel-v1",
+  "execution_enabled": false,
+  "not_a_launch_manifest": true,
+  "control_policy": {
+    "per_credential_seconds": 600,
+    "case_wall_seconds": null,
+    "physical_budget": "route original unchanged",
+    "key_policy": "existing ordered seven slots with exact key/host pairing"
+  },
+  "panels": {
+    "RoboMME": {
+      "development": {
+        "dataset": "val",
+        "tasks": [
+          "VideoUnmask",
+          "ButtonUnmask",
+          "PickHighlight",
+          "PickXtimes",
+          "VideoPlaceButton",
+          "MoveCube"
+        ],
+        "episodes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "heldout_same_task": {
+        "dataset": "test",
+        "tasks": [
+          "VideoUnmask",
+          "ButtonUnmask",
+          "PickHighlight",
+          "PickXtimes",
+          "VideoPlaceButton",
+          "MoveCube"
+        ],
+        "episodes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ]
+      },
+      "heldout_mechanism": {
+        "dataset": "test",
+        "tasks": [
+          "VideoUnmaskSwap",
+          "ButtonUnmaskSwap",
+          "VideoRepick",
+          "VideoPlaceOrder"
+        ],
+        "episodes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ]
+      }
+    },
+    "RoboMemArena": {
+      "development_tasks": [
+        "4_drawer_butter",
+        "5_butter_middle_drawer",
+        "12_cookies_chocolate_middle_drawer",
+        "1_cookies_tomato_basket",
+        "6_pour_tomato_sauce_into_bowl_drainer"
+      ],
+      "heldout_tasks": [
+        "14_cookies_chocolate_drawers",
+        "17_butter_chocolate_middle_drawer",
+        "18_chocolate_butter_cabinet",
+        "19_tomato_milk_orange_cabinet",
+        "20_cookies_chocolate_microwave",
+        "24_cookies_popcorn_microwave"
+      ],
+      "development_seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "same_task_heldout_seeds": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "unseen_task_seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "split_owner": "our proposed protocol, not official split"
+    },
+    "LADDER": {
+      "development_tasks": [
+        "comp_ordered_bin_2",
+        "comp_ordered_bin_6",
+        "comp_relay_2",
+        "comp_relay_4",
+        "comp_revisit_1",
+        "comp_revisit_2",
+        "comp_identical_4",
+        "comp_bin_6"
+      ],
+      "heldout_composition_tasks": [
+        "comp_ordered_bin_4",
+        "comp_ordered_bin_8",
+        "comp_ordered_bin_10",
+        "comp_relay_3",
+        "comp_relay_5",
+        "comp_revisit_3",
+        "comp_transfer_2",
+        "comp_transfer_3"
+      ],
+      "development_seeds": [
+        0,
+        1
+      ],
+      "same_task_heldout_seeds": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "heldout_composition_seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "split_owner": "our proposed protocol, not official split"
+    },
+    "LIBERO-PRO": {
+      "suites": [
+        "libero_object_swap",
+        "libero_goal_swap"
+      ],
+      "task_indices": [
+        1,
+        3,
+        8
+      ],
+      "index_base": 0,
+      "catalog_binding_pending": true,
+      "required_bindings": [
+        "task_name",
+        "bddl_sha256",
+        "init_state_id"
+      ]
+    },
+    "RoboCasa": {
+      "task_ids": [
+        "ArrangeBreadBasket",
+        "CoffeeSetupMug",
+        "StackBowlsCabinet"
+      ],
+      "version_binding_pending": true,
+      "known_seen_identity": "CoffeeSetupMug seed2; exclude from unseen holdout"
+    }
+  }
+}

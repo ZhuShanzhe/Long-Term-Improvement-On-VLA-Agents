@@ -1,0 +1,28 @@
+{
+  "schema": "comparison-family-mapping-v1",
+  "execution_enabled": false,
+  "main_table": {
+    "B0_native": "native16k",
+    "B1_summary": "summary",
+    "B2_retrieval": "provenance-retrieval",
+    "B3_fixed_precheck": "fixed-precheck",
+    "Ours_S": "skill-only",
+    "Ours_SH": "skill+harness"
+  },
+  "causal_core": {
+    "S0H0": "same-memory/no-S/no-H",
+    "S1H0": "same-memory/S-only",
+    "S0H1": "same-memory/H-only",
+    "S1H1": "same-memory/S+H"
+  },
+  "staged_methods_not_main_table": [
+    "B0_native",
+    "B1_retrieval",
+    "B2_fixed_precheck",
+    "B3_predict_only",
+    "B4_joint_preserve",
+    "B5_joint_learned"
+  ],
+  "not_equivalent": "B0/B1/B2 numbers in staged-methods are NOT main-table numbers; no automatic historical result remapping",
+  "selection": "Use exactly one declared family per analysis. MAIN measures package comparisons; CORE isolates S/H holding memory constant."
+}

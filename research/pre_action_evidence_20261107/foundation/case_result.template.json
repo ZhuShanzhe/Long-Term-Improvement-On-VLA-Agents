@@ -1,0 +1,11 @@
+{
+  "case_id": "benchmark/task/seed/arm/attempt",
+  "benchmark": "EXACT_ROUTE",
+  "arm": "B0_native",
+  "valid": false,
+  "native": null,
+  "integration_only": false,
+  "invalid_reason": "PENDING_NOT_A_TASK_FAILURE",
+  "offline_labels": [],
+  "measurements_note": "Only add decisions/physical_steps/preservation_actions/final_reported_usage if actually measured. Missing counters are UNKNOWN, never fabricated zero. Usage is final cumulative once, not invoice."
+}

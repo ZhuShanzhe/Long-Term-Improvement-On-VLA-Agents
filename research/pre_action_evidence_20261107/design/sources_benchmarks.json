@@ -1,0 +1,52 @@
+{
+  "verified_at": "2026-11-07",
+  "execution_enabled": false,
+  "sources": [
+    {
+      "id": "B1",
+      "url": "https://github.com/RoboMME/robomme_benchmark",
+      "commit": "5753639d62c167ba74fa64fcce8b2f4895d08e7b",
+      "verified": "local pinned source + official README web",
+      "scope": "16 IDs and train100/val50/test50"
+    },
+    {
+      "id": "B2",
+      "url": "https://github.com/RoboMME/robomme_benchmark/blob/main/doc/env_format.md",
+      "scope": "all cue frame lists, public RGB/proprio, distinct action spaces, oracle fields excluded"
+    },
+    {
+      "id": "B3",
+      "url": "https://robomemarena.github.io/",
+      "scope": "official 26-task descriptions; not all are irrecoverable evidence tasks"
+    },
+    {
+      "id": "B4",
+      "url": "https://github.com/OpenHelix-Team/RoboMemArena/tree/main/evaluation_benchmark/reference_evaluation",
+      "commit": "830a31ae7c08fb99f514843275cd264a2bf36f16",
+      "scope": "native stage CSR/TSR and original post-pour monitor"
+    },
+    {
+      "id": "B5",
+      "url": "https://github.com/insait-institute/ladder/tree/main/ladder/components/inference/robots/robolab/composition",
+      "commit": "d645441a716595cce2ef9fb96abf2a324dc25b21",
+      "scope": "44 official composition IDs; proposed heldout split is ours"
+    },
+    {
+      "id": "B6",
+      "url": "https://arxiv.org/abs/2510.03827",
+      "scope": "LIBERO-PRO perturbation protocol, exact local BDDL/init binding still required"
+    },
+    {
+      "id": "B7",
+      "url": "https://robocasa.ai/",
+      "scope": "kitchen simulation, version drift; current route profile remains frozen"
+    }
+  ],
+  "limitations": [
+    "No new paid runs performed",
+    "PRO semantic task-name/BDDL/init binding remains prepare-time required",
+    "EVID-Preserve is a proposed independent extension, not downloaded official data",
+    "RMA reset seed panels are our proposed splits, not official train/test splits",
+    "This plan does not claim five routes already produced valid task scores"
+  ]
+}

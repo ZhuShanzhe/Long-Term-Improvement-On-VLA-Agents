@@ -1,0 +1,25 @@
+{
+  "schema": "pre-action-evidence-scenario-v1",
+  "execution_enabled": false,
+  "benchmark": "BIND_EXACT_ORIGINAL_BENCHMARK",
+  "task_id": "BIND_OFFICIAL_CATALOG_ID_NOT_FREEFORM_TASK_NAME",
+  "native_catalog_sha256": null,
+  "split": "development_or_locked_test",
+  "seed_panel": [],
+  "episode_ids": [],
+  "protocol": "native_or_separately_versioned_extension",
+  "extension_changes_native_task": false,
+  "public_inputs": ["original_task_instruction", "original_RGB", "original_proprio", "original_tool_return"],
+  "policy_extension_point": "AvailabilityPredictor_and_PreservationSelector_only",
+  "evidence_loss_hypothesis": "PREDECLARE_CLOSURE_OCCLUSION_IDENTITY_REBINDING_OR_OTHER",
+  "offline_annotation_only": {
+    "eligible_loss_events": [],
+    "future_decision_events": [],
+    "recoverability_labels": [],
+    "annotator_protocol": "Independent blinded annotation or heldout evaluator labels; never exposed to policy",
+    "counterfactual_branch": "OFFLINE_TRAIN_ONLY_NO_TEST_RESET_OR_EXTRA_SCORE_RPC"
+  },
+  "unknown_policy": "Invalid/missing-native distinct from nativeFalse; report coverage and exclusions",
+  "cost_policy": "All memory/view/act calls counted by original shared decision ledger; no extra planning LLM",
+  "preregistration": "REVIEW_AND_FREEZE_BEFORE_TEST_NOT_EXECUTABLE"
+}

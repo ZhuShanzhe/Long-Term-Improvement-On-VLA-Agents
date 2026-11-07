@@ -1,0 +1,78 @@
+[
+  {
+    "name": "memory_query",
+    "description": "Read PUBLIC episode history or agent-belief state. Never executes a robot action. SQL SELECT is available only in program-access context arms.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "sql": {
+          "type": "string"
+        },
+        "params": {
+          "type": "array",
+          "items": {
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+            ]
+          }
+        }
+      },
+      "required": [
+        "query",
+        "sql",
+        "params"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "memory_write",
+    "description": "Record a fallible episode belief or rolling note with PUBLIC evidence IDs. Does not verify task success and cannot execute or replay an action.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "entity": {
+          "type": "string"
+        },
+        "attribute": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 8
+        },
+        "supersedes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 8
+        }
+      },
+      "required": [
+        "text",
+        "entity",
+        "attribute",
+        "value",
+        "evidence_ids",
+        "supersedes"
+      ],
+      "additionalProperties": false
+    }
+  }
+]

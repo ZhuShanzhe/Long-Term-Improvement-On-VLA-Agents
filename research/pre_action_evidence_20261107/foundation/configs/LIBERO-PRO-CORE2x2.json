@@ -1,0 +1,250 @@
+[
+  {
+    "schema": "pre-action-evidence-foundation-v1",
+    "benchmark": "LIBERO-PRO",
+    "arm": "S0H0",
+    "common": {
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high",
+      "codex_cli": "0.149.1",
+      "native_compaction_tokens": 16000,
+      "frozen_checkpoint_profile": "original PRO independent frozen checkpoint",
+      "action_contract": "original PRO native action/observation",
+      "action_chunk": "original PRO chunk",
+      "observations": "original public RGB/proprio in original ordering; no GT/info wholesale",
+      "native_scoring": "original evaluator only; missing=UNKNOWN; no extra goalcheck",
+      "native_steps": "original 10000",
+      "decision_cap": 100,
+      "memory_tools_count_inside_cap": true,
+      "generation_budget": "original resolved CLI metadata; no increase",
+      "context_tool_schema": "identical across arms; no physical capability",
+      "storage_cap_bytes": 16777216,
+      "storage_cap_status": "PREREGISTRATION_CANDIDATE_NOT_APPROVED_FOR_LONG_RGB",
+      "storage_scope": "candidate evidence metadata/reference bytes only; original RGB retention unchanged; preflight sizing required",
+      "historical_read_bytes_per_decision": 4096,
+      "same_current_observation": true,
+      "new_motion_skills": false,
+      "online_code_edits": false,
+      "relay": {
+        "per_key_seconds": 600,
+        "slots": 7,
+        "attempts_per_slot": 1,
+        "sdk_retries": 0,
+        "case_wall_seconds": null,
+        "failed_partial_tools": "discard",
+        "physical_replay": false
+      },
+      "required_bound_hashes": {
+        "checkpoint": null,
+        "norm": null,
+        "physical_tool_schema": null,
+        "native_scorer": null,
+        "native_adapter": null,
+        "planner_prefix": null,
+        "execution_protocol": null
+      },
+      "launcher": {
+        "module": "launch_libero_pro_study.py",
+        "binding_source": "Long-context-continuity-study-20261107-v1/runtime-g8",
+        "default": "prepare-only",
+        "new_unique_namespace": true,
+        "live_activation": false
+      }
+    },
+    "context": {
+      "representation": "provenance",
+      "access": "bounded-retrieval",
+      "pre_action_skill": "disabled",
+      "availability_predictor": "disabled",
+      "selector": "disabled",
+      "offline_fit_artifact": null
+    },
+    "execution_enabled": false
+  },
+  {
+    "schema": "pre-action-evidence-foundation-v1",
+    "benchmark": "LIBERO-PRO",
+    "arm": "S1H0",
+    "common": {
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high",
+      "codex_cli": "0.149.1",
+      "native_compaction_tokens": 16000,
+      "frozen_checkpoint_profile": "original PRO independent frozen checkpoint",
+      "action_contract": "original PRO native action/observation",
+      "action_chunk": "original PRO chunk",
+      "observations": "original public RGB/proprio in original ordering; no GT/info wholesale",
+      "native_scoring": "original evaluator only; missing=UNKNOWN; no extra goalcheck",
+      "native_steps": "original 10000",
+      "decision_cap": 100,
+      "memory_tools_count_inside_cap": true,
+      "generation_budget": "original resolved CLI metadata; no increase",
+      "context_tool_schema": "identical across arms; no physical capability",
+      "storage_cap_bytes": 16777216,
+      "storage_cap_status": "PREREGISTRATION_CANDIDATE_NOT_APPROVED_FOR_LONG_RGB",
+      "storage_scope": "candidate evidence metadata/reference bytes only; original RGB retention unchanged; preflight sizing required",
+      "historical_read_bytes_per_decision": 4096,
+      "same_current_observation": true,
+      "new_motion_skills": false,
+      "online_code_edits": false,
+      "relay": {
+        "per_key_seconds": 600,
+        "slots": 7,
+        "attempts_per_slot": 1,
+        "sdk_retries": 0,
+        "case_wall_seconds": null,
+        "failed_partial_tools": "discard",
+        "physical_replay": false
+      },
+      "required_bound_hashes": {
+        "checkpoint": null,
+        "norm": null,
+        "physical_tool_schema": null,
+        "native_scorer": null,
+        "native_adapter": null,
+        "planner_prefix": null,
+        "execution_protocol": null
+      },
+      "launcher": {
+        "module": "launch_libero_pro_study.py",
+        "binding_source": "Long-context-continuity-study-20261107-v1/runtime-g8",
+        "default": "prepare-only",
+        "new_unique_namespace": true,
+        "live_activation": false
+      }
+    },
+    "context": {
+      "representation": "provenance",
+      "access": "bounded-retrieval",
+      "pre_action_skill": "requirement-skill",
+      "availability_predictor": "disabled",
+      "selector": "skill-guided-only-not-implemented",
+      "offline_fit_artifact": null
+    },
+    "execution_enabled": false
+  },
+  {
+    "schema": "pre-action-evidence-foundation-v1",
+    "benchmark": "LIBERO-PRO",
+    "arm": "S0H1",
+    "common": {
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high",
+      "codex_cli": "0.149.1",
+      "native_compaction_tokens": 16000,
+      "frozen_checkpoint_profile": "original PRO independent frozen checkpoint",
+      "action_contract": "original PRO native action/observation",
+      "action_chunk": "original PRO chunk",
+      "observations": "original public RGB/proprio in original ordering; no GT/info wholesale",
+      "native_scoring": "original evaluator only; missing=UNKNOWN; no extra goalcheck",
+      "native_steps": "original 10000",
+      "decision_cap": 100,
+      "memory_tools_count_inside_cap": true,
+      "generation_budget": "original resolved CLI metadata; no increase",
+      "context_tool_schema": "identical across arms; no physical capability",
+      "storage_cap_bytes": 16777216,
+      "storage_cap_status": "PREREGISTRATION_CANDIDATE_NOT_APPROVED_FOR_LONG_RGB",
+      "storage_scope": "candidate evidence metadata/reference bytes only; original RGB retention unchanged; preflight sizing required",
+      "historical_read_bytes_per_decision": 4096,
+      "same_current_observation": true,
+      "new_motion_skills": false,
+      "online_code_edits": false,
+      "relay": {
+        "per_key_seconds": 600,
+        "slots": 7,
+        "attempts_per_slot": 1,
+        "sdk_retries": 0,
+        "case_wall_seconds": null,
+        "failed_partial_tools": "discard",
+        "physical_replay": false
+      },
+      "required_bound_hashes": {
+        "checkpoint": null,
+        "norm": null,
+        "physical_tool_schema": null,
+        "native_scorer": null,
+        "native_adapter": null,
+        "planner_prefix": null,
+        "execution_protocol": null
+      },
+      "launcher": {
+        "module": "launch_libero_pro_study.py",
+        "binding_source": "Long-context-continuity-study-20261107-v1/runtime-g8",
+        "default": "prepare-only",
+        "new_unique_namespace": true,
+        "live_activation": false
+      }
+    },
+    "context": {
+      "representation": "provenance",
+      "access": "bounded-retrieval",
+      "pre_action_skill": "disabled",
+      "availability_predictor": "extension-not-implemented",
+      "selector": "joint-extension-not-implemented",
+      "offline_fit_artifact": null
+    },
+    "execution_enabled": false
+  },
+  {
+    "schema": "pre-action-evidence-foundation-v1",
+    "benchmark": "LIBERO-PRO",
+    "arm": "S1H1",
+    "common": {
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high",
+      "codex_cli": "0.149.1",
+      "native_compaction_tokens": 16000,
+      "frozen_checkpoint_profile": "original PRO independent frozen checkpoint",
+      "action_contract": "original PRO native action/observation",
+      "action_chunk": "original PRO chunk",
+      "observations": "original public RGB/proprio in original ordering; no GT/info wholesale",
+      "native_scoring": "original evaluator only; missing=UNKNOWN; no extra goalcheck",
+      "native_steps": "original 10000",
+      "decision_cap": 100,
+      "memory_tools_count_inside_cap": true,
+      "generation_budget": "original resolved CLI metadata; no increase",
+      "context_tool_schema": "identical across arms; no physical capability",
+      "storage_cap_bytes": 16777216,
+      "storage_cap_status": "PREREGISTRATION_CANDIDATE_NOT_APPROVED_FOR_LONG_RGB",
+      "storage_scope": "candidate evidence metadata/reference bytes only; original RGB retention unchanged; preflight sizing required",
+      "historical_read_bytes_per_decision": 4096,
+      "same_current_observation": true,
+      "new_motion_skills": false,
+      "online_code_edits": false,
+      "relay": {
+        "per_key_seconds": 600,
+        "slots": 7,
+        "attempts_per_slot": 1,
+        "sdk_retries": 0,
+        "case_wall_seconds": null,
+        "failed_partial_tools": "discard",
+        "physical_replay": false
+      },
+      "required_bound_hashes": {
+        "checkpoint": null,
+        "norm": null,
+        "physical_tool_schema": null,
+        "native_scorer": null,
+        "native_adapter": null,
+        "planner_prefix": null,
+        "execution_protocol": null
+      },
+      "launcher": {
+        "module": "launch_libero_pro_study.py",
+        "binding_source": "Long-context-continuity-study-20261107-v1/runtime-g8",
+        "default": "prepare-only",
+        "new_unique_namespace": true,
+        "live_activation": false
+      }
+    },
+    "context": {
+      "representation": "provenance",
+      "access": "bounded-retrieval",
+      "pre_action_skill": "requirement-skill",
+      "availability_predictor": "extension-not-implemented",
+      "selector": "joint-extension-not-implemented",
+      "offline_fit_artifact": null
+    },
+    "execution_enabled": false
+  }
+]

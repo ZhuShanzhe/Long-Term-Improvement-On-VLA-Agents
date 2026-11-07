@@ -1,0 +1,97 @@
+{
+  "LADDER": {
+    "staged-methods": {
+      "noncontext_equal": true,
+      "fingerprint": "ae528894ac1fa0b9451881da1090a20f99b9968ce7ae5ed423a2167444ec4a9a",
+      "execution_enabled": false
+    },
+    "main": {
+      "family": "main",
+      "noncontext_equal": true,
+      "fingerprint": "ae528894ac1fa0b9451881da1090a20f99b9968ce7ae5ed423a2167444ec4a9a",
+      "execution_enabled": false
+    },
+    "core2x2": {
+      "family": "core2x2",
+      "noncontext_equal": true,
+      "fingerprint": "ae528894ac1fa0b9451881da1090a20f99b9968ce7ae5ed423a2167444ec4a9a",
+      "execution_enabled": false
+    }
+  },
+  "RoboMME": {
+    "staged-methods": {
+      "noncontext_equal": true,
+      "fingerprint": "0b3c48005a6f7deebc9a4376a653e43b52cc579cd56e7bbdf4afd70d83e0b355",
+      "execution_enabled": false
+    },
+    "main": {
+      "family": "main",
+      "noncontext_equal": true,
+      "fingerprint": "0b3c48005a6f7deebc9a4376a653e43b52cc579cd56e7bbdf4afd70d83e0b355",
+      "execution_enabled": false
+    },
+    "core2x2": {
+      "family": "core2x2",
+      "noncontext_equal": true,
+      "fingerprint": "0b3c48005a6f7deebc9a4376a653e43b52cc579cd56e7bbdf4afd70d83e0b355",
+      "execution_enabled": false
+    }
+  },
+  "RoboMemArena": {
+    "staged-methods": {
+      "noncontext_equal": true,
+      "fingerprint": "e0cf3d8428cd6894892d2a840c30bf1fd0bd5021cb929650e89d42dfaec821db",
+      "execution_enabled": false
+    },
+    "main": {
+      "family": "main",
+      "noncontext_equal": true,
+      "fingerprint": "e0cf3d8428cd6894892d2a840c30bf1fd0bd5021cb929650e89d42dfaec821db",
+      "execution_enabled": false
+    },
+    "core2x2": {
+      "family": "core2x2",
+      "noncontext_equal": true,
+      "fingerprint": "e0cf3d8428cd6894892d2a840c30bf1fd0bd5021cb929650e89d42dfaec821db",
+      "execution_enabled": false
+    }
+  },
+  "LIBERO-PRO": {
+    "staged-methods": {
+      "noncontext_equal": true,
+      "fingerprint": "8d8175fa801b640bb2d6a1e9ca7b53711efc11300e2cdedefe41a6da990933de",
+      "execution_enabled": false
+    },
+    "main": {
+      "family": "main",
+      "noncontext_equal": true,
+      "fingerprint": "8d8175fa801b640bb2d6a1e9ca7b53711efc11300e2cdedefe41a6da990933de",
+      "execution_enabled": false
+    },
+    "core2x2": {
+      "family": "core2x2",
+      "noncontext_equal": true,
+      "fingerprint": "8d8175fa801b640bb2d6a1e9ca7b53711efc11300e2cdedefe41a6da990933de",
+      "execution_enabled": false
+    }
+  },
+  "RoboCasa": {
+    "staged-methods": {
+      "noncontext_equal": true,
+      "fingerprint": "55a64dbcc97d8bb1c3419cf71f7264e21085374c70866137095988c8493f0525",
+      "execution_enabled": false
+    },
+    "main": {
+      "family": "main",
+      "noncontext_equal": true,
+      "fingerprint": "55a64dbcc97d8bb1c3419cf71f7264e21085374c70866137095988c8493f0525",
+      "execution_enabled": false
+    },
+    "core2x2": {
+      "family": "core2x2",
+      "noncontext_equal": true,
+      "fingerprint": "55a64dbcc97d8bb1c3419cf71f7264e21085374c70866137095988c8493f0525",
+      "execution_enabled": false
+    }
+  }
+}
