@@ -1,0 +1,19 @@
+{
+  "schema": "PACK-EVID-task-relevant-similarity-v1",
+  "clusters": 396,
+  "same_information_task_pairs_ignoring_pose": 58,
+  "cross_split_same_information_task_pairs_ignoring_pose": 30,
+  "near_RGB_same_information_task_pairs": 0,
+  "cross_split_near_complete_task_pairs": 0,
+  "cross_split_near_RGB_same_workflow_carrier_pairs": 3,
+  "private_pair_details_file": "private-task-near-pairs.json",
+  "ignored_nuisance": [
+    "unused item fields",
+    "RNG seed",
+    "texture seed",
+    "layout offset"
+  ],
+  "near_RGB_threshold": "two-camera 512-bit grayscale dHash <=6; grayscale cannot establish color/semantic equivalence",
+  "upper_API_calls": 0,
+  "all_required_checks_passed": true
+}

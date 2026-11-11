@@ -1,0 +1,16 @@
+{
+  "same_information_task_replicas_ignoring_pose_pairs": 58,
+  "by_split_pair": {
+    "development/validation": 5,
+    "validation/validation": 2,
+    "development/development": 3,
+    "test/test": 4,
+    "reserve/test": 25,
+    "reserve/reserve": 19
+  },
+  "development_to_formal_test_information_task_overlap_pairs": 0,
+  "validation_to_formal_test_information_task_overlap_pairs": 0,
+  "replicas_are_not_distinct_task_designs": true,
+  "scope": "Repeated finite-valued facts in distinct physical layouts are stochastic repetitions; infer generalization from heldout workflow/composition tests, not seed counts.",
+  "upper_API_calls": 0
+}

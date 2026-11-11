@@ -1,0 +1,84 @@
+{
+  "schema": "PACK-EVID-physical-release-v2",
+  "UTC": "2026-11-11T11:54:46.572251+00:00",
+  "physical_construction_complete": true,
+  "dataset_root": "/root/autodl-tmp/experiments/three-skill-crossbench-pilot-20261021-apiyi-v1/Pre-action-evidence-preservation-study-20261107-v1/PACK-EVID-physical-scenes-20261111-v1/release-physical",
+  "conditions": 1584,
+  "constructor_clusters": 396,
+  "workflows": 12,
+  "workflow_carrier_combinations": 33,
+  "mechanical_carriers": 3,
+  "qualification_scope": "native construction, representative fixture closure and frozen-policy interface prefixes",
+  "splits": {
+    "development": 144,
+    "validation": 240,
+    "test": 480,
+    "reserve": 720
+  },
+  "acceptance_phases": [
+    {
+      "phase": "workflows",
+      "passed": true,
+      "tested": 66,
+      "receipt": "workflows-final.json"
+    },
+    {
+      "phase": "acquisition_assets",
+      "passed": true,
+      "tested": 9,
+      "receipt": "acquisition-assets-final.json"
+    },
+    {
+      "phase": "materialize",
+      "passed": true,
+      "tested": 1584,
+      "receipt": "materialize-final.json"
+    },
+    {
+      "phase": "policy_interface",
+      "passed": true,
+      "tested": 3,
+      "receipt": "policy-interface-final.json"
+    }
+  ],
+  "paired_equal_state_RGB_clusters": 396,
+  "paired_equal_post_noop_clusters": 396,
+  "owned_identity_count": 56,
+  "all_owned_absent": true,
+  "owned_groups_empty": true,
+  "GPU_compute_processes": 0,
+  "global_flock_free_before_metadata_write": true,
+  "upper_API_calls": 0,
+  "keys_read": 0,
+  "model_method_results": 0,
+  "training_performed": false,
+  "fixture_success_is_robot_or_method_success": false,
+  "robot_complete_task_success_established": false,
+  "paid_Codex_complete_episode_validated": false,
+  "future_paid_method_queue_enabled": false,
+  "scientific_model_checkpoint_norm_action_and_score_budgets_changed": false,
+  "prior_protocol_release_preserved": true,
+  "source_hashes": {
+    "dataset.py": "eb5e7c5b1d96aee7a346129abbf189f05c7409cbc75e234d7d3403bd2048af56",
+    "deploy_server.py": "2f660e488de769cf2afa5cdb905964839e012bdd84f89cee8a770d582587cbd6",
+    "diversity.py": "633f1c544cf7ad7a33db8aee7b18f4ccab7e333ed7a917327aa55a50299dc169",
+    "finite_runner.py": "b2d935ff04c591c5734c97a1a989e5ea0b1efbd60369b931aca9a717de791873",
+    "geometry.py": "b121194e157556f378a001cab5d6512678cebd298a09eeec302d04eb126ffc0e",
+    "jig.py": "1c8e34f09d6cde339b853d397da7045ca4ad5fc8296d2e1910abbf7037b788c8",
+    "launch_server.py": "e7d3fbef2ad7dffaa8056503ec23564d962c5052decac2a0a1fd42771390bdb0",
+    "native_checks.py": "36d85e2c3d9f42d92b24d89182400652775e09493f9e68bfc6c4008e0fabe968",
+    "pack_env.py": "4b5ebe1a84470e2ab8a4ed3860f66a68da0f59aea3fe8f3eb5a7458ac5c7315f",
+    "policy_interface.py": "32b9c892a5e56b1babef01e281e9b56d2227ed76d8d323a3aa9bd753b2c03c72",
+    "task_port.py": "a8be1046cdbf198e111b6b5a6b752ce02b16e36d58c2901dde5e3ddedf7e1f67",
+    "run_case.py": "461ef8180a2811967ac2a63a39cbee470abbebce0a6783566e3a2304e577070f",
+    "test_physics_contract.py": "cb35ba7e3a717c49fa64770a21d82e1794648e9e43805a39fe73fa5b5a9ca53d",
+    "acceptance.py": "17571bf1a0f0a6e5b809ad0b88a4ff1f1bbed18db2e8b5cb3fed4db14d4a37df",
+    "acquisition_assets.py": "96dbbab6eae075839e43b826f601bb16188e804617b9bba7427a40205fd00f1a",
+    "audit_physical_release.py": "126772b43ee484af0a03fff3b2dccbfc96a94ecc2d199b2eb167dfcde79d6ff4"
+  },
+  "diversity_audit_sha256": "0f1c33a6bdccd71ced80511ebe3a4290c036b1fa86cba180f3db01aed503106b",
+  "common_equivalence_sha256": "061d1c0a8518750af46065762236dbf4acb787a67e36d9ddc3bc39bd61e7a21c",
+  "task_relevant_similarity_audit_sha256": "22c5f4fb30ee92d9314ebfdee83f2fd411b0255f4582f5cc432c17c8000bd9f5",
+  "CPU_contract_and_score_boundary_tests_passed": 32,
+  "next_action": "Use the fixed development panel through the same public tool host. Keep the privileged fixture/evaluator private. Qualify frozen-policy complete-task behavior separately before drawing evidence-method conclusions."
+}
