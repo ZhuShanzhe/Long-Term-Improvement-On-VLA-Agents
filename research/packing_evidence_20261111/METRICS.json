@@ -1,0 +1,39 @@
+{
+  "primary": [
+    "supported_correct_delayed_verification_per_constructor_cluster",
+    "false_accept_and_acceptance_jointly"
+  ],
+  "mechanism": [
+    "acquired_before_access_change",
+    "required_source_coverage_in_first_needed_request",
+    "binding_correct_after_transfer",
+    "unsupported_answer_rate",
+    "unknown_rate"
+  ],
+  "task": [
+    "custom_native_valid_true_false_unknown_separately",
+    "complete_packing_and_handover",
+    "control_unnecessary_inspection_rate"
+  ],
+  "cost": [
+    "original_control_steps",
+    "host_decisions",
+    "inspection_and_reinspection_calls",
+    "rework_steps",
+    "active_card_bytes",
+    "last_cumulative_input_cached_output_usage"
+  ],
+  "not_an_invoice": true,
+  "units": {
+    "conditions": "four dependent siblings per scene constructor",
+    "primary_analysis": "clustered paired difference with 95% interval",
+    "events": "nested mechanism metrics, not independent N"
+  },
+  "analysis": "Report unconditional task results and evidence-conditioned outcomes; never filter scenes by ours success. Report wrong acceptance together with coverage/yield to prevent always-abstain wins.",
+  "formal_contrasts": [
+    "chosen_candidate - reactive_ledger",
+    "chosen_candidate - inspect_all"
+  ],
+  "multiplicity": "Holm correction for the two predeclared primary contrasts; exploratory ablations separately",
+  "compaction": "natural/manual/protocol-cleared history are separate strata; no cross-stratum causal claim"
+}

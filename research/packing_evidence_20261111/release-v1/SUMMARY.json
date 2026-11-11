@@ -1,0 +1,38 @@
+{
+  "schema": "PACK-EVID-v1",
+  "counts": {
+    "development": 144,
+    "validation": 240,
+    "test": 480,
+    "reserve": 720
+  },
+  "partitions": {
+    "component_train": 72,
+    "development_tune": 72,
+    "validation": 240,
+    "test": 480,
+    "reserve": 720
+  },
+  "total_conditions": 1584,
+  "constructor_clusters": 396,
+  "workflows": 12,
+  "carriers": 3,
+  "test_clusters": 120,
+  "test_new_graph_conditions": 240,
+  "panels": {
+    "single_datum4": 4,
+    "quick8": 8,
+    "checkpoint12": 12,
+    "component_train": 72,
+    "development_tune": 72,
+    "development": 144,
+    "validation": 240,
+    "test": 480,
+    "reserve": 720
+  },
+  "physical_qualified_cases": 0,
+  "native_runs": 0,
+  "paid_requests": 0,
+  "not_independent": "Four condition siblings share one constructor; recipe RNG diversity is not verified physical diversity.",
+  "old310_native_tasks": "Not copied into main paper denominator. Old benchmarks retained for compatibility and separately selected transfer only."
+}
